@@ -1,12 +1,4 @@
----
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
-layout: home
----
-
-
-<h1>Introduction and objectives </h1>
+# Introduction and objectives
 
 This course is about designing algorithms for computational problems, and how to think clearly about analyzing correctness and running time. The main goal is to provide the intellectual tools needed for designing and analyzing your own algorithms for new problems you need to solve in the future.
 
