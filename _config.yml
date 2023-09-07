@@ -22,8 +22,8 @@ title: Algorithms (CC4010) 2023/2024
 email: jose@proenca.org
 description: >- # this means to ignore newlines until "baseurl:"
   Information over the Algorithms course given at the University of Porto, 2023/2024.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cister-labs.github.io/alg2324" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/alg2324" # the subpath of your site, e.g. /blog
+url: "https://cister-labs.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 # github_username:  jekyll
 
