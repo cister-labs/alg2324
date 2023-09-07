@@ -29,13 +29,20 @@ Students should be able to understand the relationship between algorithm design,
 - Applications and some classical algorithms (e.g. graph algorithms, string matching algorithms, geometric algorithms) 
 -->
 
+# Lectures
+
+- __22 Sep 24__: Introduction ([1-intro.pdf](slides/1-intro.pdf))
+- ...
+
 # Literature
+
+### Main reference
 
 - [Introduction to algorithms](http://catalogo.up.pt/F/-?func=find-b&local_base=FCUP&find_code=SYS&request=000287411), _Cormen Thomas H. et al._; ISBN: 9780262033848
 
 ### Complementary Bibliography
 
-- The algorithm design manual; _Skiena Steven S._;  ISBN: 978-1-84800-069-8
+- [The algorithm design manual;](https://www.algorist.com) _Skiena Steven S._;  ISBN: 978-1-84800-069-8
 - [Competitive Programming 3: The New Lower Bound of Programming Contests](https://sites.google.com/site/stevenhalim/); Steven Halim and Felix Halim; 2023
 - [Algorithms](http://catalogo.up.pt/F/-?func=find-b&local_base=FCUP&find_code=SYS&request=000237593); _Sedgewick Robert_; ISBN: 0-201-06673-4
 - [Algorithm Design](http://www.cs.princeton.edu/~wayne/kleinberg-tardos/); _Jon Kleinberg and Éva Tardos;_ 2005. ISBN: 978-0321295354
