@@ -71,7 +71,31 @@
 
 \section{Asymptotic Notation}
 
-\byothers{Pedro Ribeiro, slides 2}{19-31}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+\byothers{Pedro Ribeiro, slides 2}{19-23}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+
+\begin{frame}[t]\frametitle{Examples}
+    ~\\[-8mm]
+    \begin{block}{Big Oh ($O$)}
+        $3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} O(n^2)$\only<2->{\structure<2>{ ~~because~~} $ 3n^2 >3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} O(n^3)$\only<2->{\structure<2>{ ~~because~~} $0.01n^3 >3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} O(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2 when n>c$}
+    \end{block}
+
+    \begin{block}{Big Omega ($\Omega$)}
+        $3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{=   }} \Omega(n^2)$\only<3->{\structure<3>{ ~~because~~} $2.99n^2 <3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{\neq}} \Omega(n^3)$\only<3->{\structure<3>{ ~~because~~} $n^3 > 3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{=   }} \Omega(n)$  \only<3->{\structure<3>{~~~because~~} $10^{10^{10}} n < 3n^2 -100+6$}
+    \end{block}
+
+    \begin{block}{Big Theta ($\Theta$)}
+        $3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{=   }} \Theta(n^2)$\only<4->{\structure<4>{ ~~because~~} $O$ and $\Omega$}
+      \\$3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{\neq}} \Theta(n^3)$\only<4->{\structure<4>{ ~~because~~} $O$ only}
+      \\$3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{\neq}} \Theta(n)$  \only<4->{\structure<4>{~~~because~~} $\Omega$ only}
+    \end{block}
+
+\end{frame}
+
+\byothers{Pedro Ribeiro, slides 2}{24-31}{ribeiro/2_asymptoticanalysis_02102018.pdf}
 
 
 \section{Recursive functions}
