@@ -55,8 +55,8 @@ Students should be able to understand the relationship between algorithm design,
 - Slides from [Pedro Ribeiro](https://www.dcc.fc.up.pt/~pribeiro/) (2018/19): https://www.dcc.fc.up.pt/~pribeiro/aulas/alg1819/material.html#slides
 - Content from [Ana Paula Tomás]() (2021/22): https://www.dcc.fc.up.pt/~apt/Aulas/ALGO2223.html
 - Slides from similar courses:
-  + By [Skiena, Stony Brook University, 2012](https://www3.cs.stonybrook.edu/~algorith/video-lectures/)
   + By [E. Demaine, C.E. Leiserson, MIT, 2001](http://www.cs.virginia.edu/~robins/cs6161/slides/Cormen_Algorithms_Slides.pdf) (companion of the main book - [more on the course](https://dspace.mit.edu/bitstream/handle/1721.1/36847/6-046JFall-2001/OcwWeb/Electrical-Engineering-and-Computer-Science/6-046JIntroduction-to-AlgorithmsFall2001/CourseHome/index.htm))
+  + By [Skiena, Stony Brook University, 2012](https://www3.cs.stonybrook.edu/~algorith/video-lectures/)
   + By [J. Barros, J.S. Pinto et. al, U. Minho (2022/23)](https://www4.di.uminho.pt/~jno/sitedi/uc_J303N6.html) (no content online)
   
 <!-- also companion slides, structured by lecture:
@@ -111,7 +111,7 @@ All students will be admitted to the exams.
 
  - (IT) intermediate mid-term test (mandatory) 30%
 
- - (FE) final exam: 70% (can be replaced by Tf)
+ - (FE) final exam: 70% (can be replaced by IE)
 
  - (IE) improvement exam: can replace the final exam. Required IE >= 8.
 
