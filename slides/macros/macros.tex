@@ -1,6 +1,9 @@
 \usepackage{transparent}
 \usepackage{xspace}
 \usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{relsize}
+
 %%%%%%%%%%%%% Macros
 \newcommand{\Ban}{\catfont{Ban}}
 \newcommand{\Met}{\catfont{Met}}
@@ -405,9 +408,9 @@
   emphstyle=\bfseries\itshape\color{blue!80!black},       % moreemph={...} - layer keywords
   emphstyle={[2]\itshape\color{red!70!black}},%\underbar} % moreemph={[2]...} - inner keywords
   %
-  keywordstyle=\bf\ttfamily\scriptsize\color{red!50!black},
-%  commentstyle=\sl\ttfamily\scriptsize\color{gray!70},
-  commentstyle=\scriptsize\color{green!60!black},
+  keywordstyle=\bf\ttfamily\color{red!50!black},
+%  commentstyle=\sl\ttfamily\color{gray!70},
+  commentstyle=\color{green!60!black},
   stringstyle=\ttfamily\color{purple!60!black},
   morestring=[b]",
   morecomment=[l]{\#},
@@ -438,4 +441,11 @@
   % ,emph={[2]block,hide,comm,rename,allow,||,<>,sum,&&,=>}
 }
 
+\lstdefinestyle{tiny}{basicstyle=\ttfamily\relsize{-7}}
 
+% Include slides from others
+\newcommand{\byothers}[3]{{
+\begin{frame}{}~\mycbox{\Large slides by #1\\pages #2}\end{frame}{}
+\setbeamercolor{background canvas}{bg=}
+\includepdf[pages=#2]{../../others/#3}
+}}

@@ -1,0 +1,85 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{etex} % fixes new-dimension error
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx,amsmath}
+\usepackage{stmaryrd} % cf. interleave
+\usepackage{booktabs}
+\usepackage{amscd}
+\usepackage{multicol}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{alltt}
+\usepackage{proof}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[new]{old-arrows}
+\usepackage[all]{xy}
+\usepackage{pgfplots}
+\usepackage{textcomp}
+
+\input{macros/macros}
+%-------------- template --------------------------------------------------
+\input{macros/beamerconf}
+%----------------------------------------------------------------------------
+
+\begin{document}
+
+\setLecture{3}{Counting steps\\~~~(Asymptotic analysis) [WiP]}
+\frame[plain]{\titlepage}
+
+
+\begin{frame}[t]\frametitle{Overview}
+
+  \begin{itemize}
+    \item Measuring \structure{precisely} performance of algorithms
+    \item Measuring \alert{asymptotically} performance of algorithms
+    \item Analysing recursive functions
+    \item Next: beyond worst-/best-case scenarios
+          \begin{itemize}
+            \item average time of a single operation
+            \item analysis of sequences of operations
+          \end{itemize}
+  \end{itemize}
+    
+\end{frame}
+
+\section{Motivation}
+
+\byothers{Charles E. Leiserson}{1-19}{Cormen_Algorithms_Slides.pdf}
+
+\byothers{Pedro Ribeiro, slides 2}{1-2}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+\byothers{Pedro Ribeiro, slides 2}{8-18}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+
+\begin{frame}\frametitle{Next steps}
+  \begin{enumerate}
+    \item Precise analysis: \alert{counting operations}
+    \item Approximate analysis -- \structure{Asymptotic notation }$(O, \Theta, \Omega, o, \omega)$
+  \end{enumerate}
+\end{frame}
+
+\section{Counting operations}
+
+\begin{frame}[t]\frametitle{Exercises}
+  [WiP: bubble sort, iSort, mult1, mult2]
+
+  [Recall arithmetic and geometric series, height of binary tree, ...]
+
+  [Proceed with Pedro's slides]
+\end{frame}
+
+\section{Asymptotic Notation}
+
+\byothers{Pedro Ribeiro, slides 2}{19-31}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+
+
+\section{Recursive functions}
+
+\begin{frame}[t]\frametitle{...}
+    
+
+
+\end{frame}
+
+\end{document}

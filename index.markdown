@@ -21,10 +21,12 @@ Students should be able to understand the relationship between algorithm design,
 - Fundamentals of asymptotic analysis
 - Average-case and randomized algorithms
 - Recursive algorithms
-- Sorting algorithms
 - Amortized analysis
 - Graph traversals and Dynamic programming
 - Fundamentals of NP-completeness
+
+<!-- - Sorting algorithms (after rec. alg. -->
+
 
 <!-- - Fundamentals of asymptotic analysis
 - Divide and conquer design pattern and how to solve recurrences
@@ -44,9 +46,21 @@ Students should be able to understand the relationship between algorithm design,
 
 # Literature
 
-### Main reference
+### Main book
 
 - [Introduction to algorithms](http://catalogo.up.pt/F/-?func=find-b&local_base=FCUP&find_code=SYS&request=000287411), _Cormen Thomas H. et al._; ISBN: 9780262033848
+
+### Previous years
+
+- Slides from [Pedro Ribeiro](https://www.dcc.fc.up.pt/~pribeiro/) (2018/19): https://www.dcc.fc.up.pt/~pribeiro/aulas/alg1819/material.html#slides
+- Content from [Ana Paula Tomás]() (2021/22): https://www.dcc.fc.up.pt/~apt/Aulas/ALGO2223.html
+- Slides from similar courses:
+  + By [Skiena, Stony Brook University, 2012](https://www3.cs.stonybrook.edu/~algorith/video-lectures/)
+  + By [E. Demaine, C.E. Leiserson, MIT, 2001](http://www.cs.virginia.edu/~robins/cs6161/slides/Cormen_Algorithms_Slides.pdf) (companion of the main book - [more on the course](https://dspace.mit.edu/bitstream/handle/1721.1/36847/6-046JFall-2001/OcwWeb/Electrical-Engineering-and-Computer-Science/6-046JIntroduction-to-AlgorithmsFall2001/CourseHome/index.htm))
+  + By [J. Barros, J.S. Pinto et. al, U. Minho (2022/23)](https://www4.di.uminho.pt/~jno/sitedi/uc_J303N6.html) (no content online)
+  
+<!-- also companion slides, structured by lecture:
+  https://dspace.mit.edu/bitstream/handle/1721.1/36847/6-046JFall-2001/OcwWeb/Electrical-Engineering-and-Computer-Science/6-046JIntroduction-to-AlgorithmsFall2001/LectureNotes/index.htm -->
 
 ### Complementary Bibliography
 
@@ -75,8 +89,8 @@ Distributed evaluation with final exam
 
 |designation | Weight (%)|
 |------------|-----------|
-|Exam |80,00|
-|Test | 20,00|
+|Exam |70,00|
+|Test | 30,00|
 
 
 ### Amount of time allocated to each course unit
@@ -95,16 +109,16 @@ All students will be admitted to the exams.
 
 # Calculation formula of final grade
 
- - (IT) intermediate mid-term test (mandatory) 20%
+ - (IT) intermediate mid-term test (mandatory) 30%
 
- - (FE) final exam: 80% (can be replaced by Tf)
+ - (FE) final exam: 70% (can be replaced by Tf)
 
  - (IE) improvement exam: can replace the final exam. Required IE >= 8.
 
 
-1st Exam ("Normal") classification: C = max(FE,IE)*0.8+ IT*0.2 >= 9.5
+1st Exam ("Normal") classification: C = max(FE,IE)*0.7+ IT*0.3 >= 9.5
 
-2nd Exam ("Recurso") classification: C = max(FE*0.8+IT*0.2, FE) >= 9.5
+2nd Exam ("Recurso") classification: C = max(FE*0.7+IT*0.3, FE) >= 9.5
 
 Required FE >=8.
 
@@ -120,4 +134,4 @@ By final exam.
 
 The day and time for _appointments_ is Friday afternoon ([José Proença](https://jose.proenca.org)). Please
 email me the day before if you wish to meet. If you prefer you
-can also just send an email with your questions to [José Proença](mailto:pro@isep.ipp.pt), or we can try to book an online meeting.
+can also just send an email with your questions to [José Proença](mailto:pro@isep.ipp.pt), or we can try to book an online meeting[.](https://github.com/cister-labs/alg2324)
