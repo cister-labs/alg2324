@@ -192,17 +192,86 @@ int mult2 (int x, int y){
 \end{frame}
 \exerciseBack
 
+\begin{frame}[fragile]\frametitle{Some intuition -- mult1(4,5)}
+
+\begin{columns}
+\begin{column}{0.36\textwidth}
+\begin{lstlisting}[language=C++,numbers=left]
+int mult1 (int x, int y){
+  // pre: x>=0
+  int a, b, r;
+  a=x; b=y; r=0;
+  while (a>0){
+    r = r+b;
+    a = a-1;
+  }
+  // pos: r == x * y 
+  return r;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.25\textwidth}
+\footnotesize
+\begin{tabular}{c@{~~~~}ccccc}
+\toprule
+\textbf{line} & \textbf{\texttt{x}} & \textbf{\texttt{y}} &
+  \textbf{\texttt{a}} & \textbf{\texttt{b}} & \textbf{\texttt{r}} 
+\\\midrule
+4 & 4 & 5 & 4 & 5 & 0 \\
+\midrule
+6 & 4 & 5 & 4 & 5 & 5 \\
+7 & 4 & 5 & 3 & 5 & 5 \\
+\midrule
+6 & 4 & 5 & 3 & 5 & 10 \\
+7 & 4 & 5 & 2 & 5 & 10 \\
+\midrule
+6 & 4 & 5 & 2 & 5 & 15 \\
+7 & 4 & 5 & 1 & 5 & 15 \\
+\midrule
+6 & 4 & 5 & 1 & 5 & 20 \\
+7 & 4 & 5 & 0 & 5 & 20 \\
+\midrule
+10 & 4 & 5 & 0 & 5 & 20 \\
+\bottomrule
+\end{tabular}
+\end{column}
+
+\pause
+\col[0.32]{
+  \begin{itemize}
+    \item \texttt{x} and \texttt{y} never change
+    \item \texttt{r} grows proportionally as \texttt{a} shrinks
+    \item \alert{guess:} $I \stackrel{\cdot}{~=~} \texttt{a*y} + \texttt{r} = \texttt{x*y}$
+    \pause
+    \item Need to show:
+      \\ $\texttt{x>=0} \alert{\Rightarrow} \structure{I'}$
+      %~~~~(where $I' = I[\texttt{x$\backslash$a},\texttt{b$\backslash$y},\texttt{r$\backslash$0}]$)
+      \\ $I \land \texttt{a>0} \alert{\Rightarrow} \structure{I'}$
+      \\ $I \land \lnot(\texttt{a>0}) \alert{\Rightarrow} \texttt{r} = \texttt{x*y}$
+    \pause
+    \item (Not all works -- enrich invariant!)
+  \end{itemize}
+}
+\end{columns}
+
+    
+
+
+\end{frame}
 
 \begin{frame}[fragile]\frametitle{More exercises}
 
 \begin{columns}
 \begin{column}{0.48\textwidth}
+% 0,1,2,..,n
+% n=0, r=0*...
+% n=1, r=1*2/2=1 ()
 \begin{lstlisting}[language=C++]
 int serie(int n){
   // pre: n>=0
   int r=0, i=1;
   // inv: ??
-  while (i!=n) {
+  while (i!=n+1) {
     r = r+i; i = i+1;
   }
   // pos: r == n * (n+1) / 2;
@@ -216,7 +285,8 @@ int mod(int x, int y) {
   // pre: x>=0 && y>0
   int r = x;
   while (y <= r) {
-    r = r-y; }
+    r = r-y;
+  }
   // pos: 0 <= r < y && exists_{q} x == q*y + r
   return r;
 }
@@ -298,7 +368,8 @@ int ssearch (int x, int a[], int N){
   // inv: ??
   while (p == -1 && i < N && x >= a[i]) {
     if (a[i] == x) p = i;
-  i = i+1; }
+    i = i+1;
+  }
   // pos: (p == -1 && forall_{0 <= k < N} a[k] != x) ||
   //      ( (0 <= p < N ) && x == a[p])
   return p;
@@ -322,6 +393,10 @@ int ssearch (int x, int a[], int N){
 \begin{alertblock}{Complete correctness}
   if $[P~holds]$ and $[S~is~executed]$ then $[Q~holds]$ \alert{AND $S$ terminates}
 \end{alertblock}
+
+\pause
+~\mycbox[0.8]{\textbf{Enough to show the existence of a \alert{loop variant}}}
+
 \end{frame}
 
 
@@ -360,7 +435,7 @@ while (y <= r) {
 \begin{frame}[fragile]\frametitle{Exercises}
 
 \begin{lstlisting}[language=C++]
-int sum (int v[], int N) {
+int sum(int v[], int N) {
   int i = 0, r = 0;
   while (i!=N) {
     // variant: ???
@@ -372,6 +447,7 @@ int sum (int v[], int N) {
 \end{lstlisting}
 
 \doSimpleExercise{Find variant above}
+~\\[-10mm]
 \doSimpleExercise{Find variants of the loops in previous exercises\\(when searching for invariants)}
 
 

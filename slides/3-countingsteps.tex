@@ -32,22 +32,32 @@
 
 \begin{frame}[t]\frametitle{Overview}
 
-  \begin{itemize}
+  % \begin{itemize}
+  %   \item Measuring \structure{precisely} performance of algorithms
+  %   \item Measuring \alert{asymptotically} performance of algorithms
+  %   \item Measuring precisely the \alert{average time} of algorithms
+  %   \item Next: beyond worst-/best-case scenarios
+  %         \begin{itemize}
+  %           \item Analysing \alert{recursive} functions
+  %           \item Analysis of sequences of operations (\alert{amortised analysis})
+  %         \end{itemize}
+  % \end{itemize}
+
     \item Measuring \structure{precisely} performance of algorithms
     \item Measuring \alert{asymptotically} performance of algorithms
-    \item Analysing recursive functions
+    \item Analysing \alert{recursive} functions
     \item Next: beyond worst-/best-case scenarios
           \begin{itemize}
-            \item average time of a single operation
-            \item analysis of sequences of operations
+            \item \alert{average time} of a single operation
+            \item analysis of sequences of operations (\alert{amortised analysis})
           \end{itemize}
-  \end{itemize}
+
     
 \end{frame}
 
 \section{Motivation}
 
-\byothers{Charles E. Leiserson}{1-19}{Cormen_Algorithms_Slides.pdf}
+\byothers{Charles E. Leiserson}{3-19}{Cormen_Algorithms_Slides.pdf}
 
 \byothers{Pedro Ribeiro, slides 2}{1-2}{ribeiro/2_asymptoticanalysis_02102018.pdf}
 \byothers{Pedro Ribeiro, slides 2}{8-18}{ribeiro/2_asymptoticanalysis_02102018.pdf}
@@ -61,13 +71,151 @@
 
 \section{Counting operations}
 
-\begin{frame}[t]\frametitle{Exercises}
-  [WiP: bubble sort, iSort, mult1, mult2]
+% \begin{frame}[t]\frametitle{Exercises}
+%   [WiP: bubble sort, iSort, mult1, mult2]
 
-  [Recall arithmetic and geometric series, height of binary tree, ...]
+%   [Recall arithmetic and geometric series, height of binary tree, ...]
 
-  [Proceed with Pedro's slides]
+%   [Proceed with Pedro's slides]
+% \end{frame}
+
+\begin{frame}[fragile]\frametitle{Simpler counting}
+\centering
+
+\begin{lstlisting}[language=C++,linewidth=50mm]
+int count = 0;
+for (int i=0; i<n; i++)
+  if (v[i] == 0) count++
+\end{lstlisting}    
+
+\frsplitt{
+  \begin{block}{RAM}
+  \begin{itemize}
+    \item worst-case: $T(n) = 5+5n$
+    \item best-case: $T(n) = 5+4n$
+  \end{itemize}  
+  \end{block}
+}{
+  \begin{alertblock}{\#array-accesses + \#count-increments}
+  \begin{itemize}
+    \item worst-case: $T(n) = 2n$
+    \item best-case: $T(n) = n$
+    \item \textcolor{black!30}{
+      average-case: $\overline{T}(n) = n + \sum_{0\leq r < n}P(v[r]=0)$}
+  \end{itemize}  
+  \end{alertblock}
+  
+}
+% 8kB
 \end{frame}
+
+\begin{frame}[fragile]\frametitle{Exercises}
+  
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++]
+void bubbleSort(int v[], int N){
+  int i, j;
+  for (i=N-1; i>0; i--)
+    for (j=0; j<i; j++)
+      if (v[j] > v[j+1]) swap(v,j,j+1);
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++]
+void iSort(int v[], int N){
+  int i, j;
+  for (i=1; i<N; i++)
+    for (j=i; j>0 && v[j-1]>v[j];
+         j--)
+      swap(v,j,j-1);
+}
+\end{lstlisting}
+\end{column}
+\end{columns}
+
+\doSimpleExercise{What is the best and worst case wrt comparisons between array elements?}
+~\\[-12mm]
+\doSimpleExercise{What is the best and worst case wrt swaps?}
+~\\[-12mm]
+\doSimpleExercise{How many of these operations are performed in both cases?}
+\end{frame}
+
+\begin{frame}[fragile]{Exercises}
+  
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++]
+int mult1 (int x, int y){
+  int a, b, r;
+  a=x; b=y; r=0;
+  while (a!=0){
+    r = r+b;
+    a = a-1;
+  }
+  return r;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++]
+int mult2 (int x, int y){
+  int a, b, r;
+  a=x; b=y; r=0;
+  while (a!=0) {
+    if (a%2 == 1) r = r+b;
+    a=a/2;
+    b=b*2;
+  return r;
+}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\doSimpleExercise{In each case, how many primitive operations (\texttt{+ - *2 /2 \%2}) are performed?}
+Note: In \texttt{mult2}, consider the size $N$ as the number of bits used to represent \texttt{x} and \texttt{y}; e.g., with 5 bits you can represent a positive integer until 31.
+
+% Considere que o tamanho do input  ́e o nu ́mero de bits necess ́arios para representar os nu ́meros inteiros passados como argumento. Recorde que, por exemplo, os nu ́meros cuja representa ̧c ̃ao requer 5 bits s ̃ao {16, . . . , 31}.}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Exercises}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={maxgrow,grow}]
+int maxgrow(int v[], int N) {
+  int r = 1, i = 0, m;
+  while (i<N-1) {
+    m = grow(v+i, N-i);
+    if (m>r) r = m;
+    i++;
+  }
+  return r;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={grow}]
+int grow(int v[], int N) {
+  int i;
+  for (i=1; i<N; i++)
+    if (v[i] < v[i-1]) break;
+  return i;
+}
+
+
+
+\end{lstlisting}
+\end{column}
+\end{columns}
+
+\doSimpleExercise{What is the best and worst case for \texttt{maxgrow} wrt comparisons of array elements?}
+~\\[-10mm]
+\doSimpleExercise{How many comparisons in each case?}
+
+% Worst case when i+=m replaces i++?
+\end{frame}
+
 
 \section{Asymptotic Notation}
 
@@ -78,7 +226,7 @@
     \begin{block}{Big Oh ($O$)}
         $3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} O(n^2)$\only<2->{\structure<2>{ ~~because~~} $ 3n^2 >3n^2 -100n+6$}
       \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} O(n^3)$\only<2->{\structure<2>{ ~~because~~} $0.01n^3 >3n^2 -100n+6$}
-      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} O(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2 when n>c$}
+      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} O(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2$ when $n>c$}
     \end{block}
 
     \begin{block}{Big Omega ($\Omega$)}
@@ -98,12 +246,51 @@
 \byothers{Pedro Ribeiro, slides 2}{24-31}{ribeiro/2_asymptoticanalysis_02102018.pdf}
 
 
+% \begin{frame}\frametitle{Exercises}
+
+%   [WiP]
+
+% \end{frame}
+
+\byothers{Pedro Ribeiro, exercises 2}{1-2}{ribeiro/ex02.pdf}
+
+
+
 \section{Recursive functions}
 
 \begin{frame}[t]\frametitle{...}
     
+[example with merge sort; avoid substitution method (or glimpse for a given guess); focus on recurrent trees]
 
+[exercises both from Ribeiro and JBB]
+
+[Later: simplified version of master theorem and short exercises]
 
 \end{frame}
+
+
+
+\section{Average case}
+
+\begin{frame}\frametitle{Recall goal}
+    
+...
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Recall arithmetic series}
+    
+...
+
+\end{frame}
+
+\begin{frame}\frametitle{Recall geometric series}
+    
+...
+
+\end{frame}
+
+
 
 \end{document}
