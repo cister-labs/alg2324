@@ -43,6 +43,7 @@
   %         \end{itemize}
   % \end{itemize}
 
+  \begin{itemize}
     \item Measuring \structure{precisely} performance of algorithms
     \item Measuring \alert{asymptotically} performance of algorithms
     \item Analysing \alert{recursive} functions
@@ -51,8 +52,7 @@
             \item \alert{average time} of a single operation
             \item analysis of sequences of operations (\alert{amortised analysis})
           \end{itemize}
-
-    
+    \end{itemize}
 \end{frame}
 
 \section{Motivation}
@@ -256,21 +256,98 @@ int grow(int v[], int N) {
 
 
 
-\section{Recursive functions}
+\section{Analysis of recursive functions}
 
-\begin{frame}[t]\frametitle{...}
-    
-[example with merge sort; avoid substitution method (or glimpse for a given guess); focus on recurrent trees]
+\begin{frame}[fragile]\frametitle{Binary search}
 
-[exercises both from Ribeiro and JBB]
+To analyse the complexity of a recursive function, we typically define the time $T$ using \emph{recurring equations}.
 
-[Later: simplified version of master theorem and short exercises]
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={bsearch}]
+int bsearch(int x, int v[], int N){
+  int i;
+  if (N<=0) i = -1;
+  else {
+    m = N/2;
+    if (v[m]==x) i = m;
+    else if (v[m] > x)
+      i = bsearch(x, v, m);
+    else {
+      i = bsearch(x, v+m+1, N-m-1);
+      if (i!=-1) i = i+m+1
+    }
+  return i ;
+}
+\end{lstlisting}
+\end{column}
+  \begin{column}{0.48\textwidth}
+    \small
+    \only<1>{Counting the number of comparisons with array elements:
+    $$T(N) = \left\{\begin{array}{ll}
+    0 & \text{if }N=0\\
+    T(N/2)+2 & \text{if }N>0
+    \end{array}\right.$$}
+    \only<2->{
+    (T(N) = T(N/2)+2~~if~~N>0)
+    \begin{align*}
+    T(0) &= 0\\
+    T(1) &= T(2^0) = 2\\
+    T(2) &= T(2^1) = 2+T({2}/{2}) = 2+2 = 4\\
+    T(4) &= T(2^2) = 2+T({4}/{2}) = 2+2+2 = 6\\
+    \cdots\\
+    T(2^i) &= \underbrace{2+2+\cdots+2}_{i\text{-times}} + 2 = 2i+2
+    \\
+    \only<3>{T(N) &= T(2^{log_2(N)}) \\&= 2*log_2(N)+2 ~~~(= \Theta(log(N)))}
+    \end{align*}
+    }
+  \end{column}
+\end{columns}
+\end{frame}
 
+\byothers{Pedro Ribeiro, slides 2}{38-61}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+
+
+\begin{frame}[fragile]\frametitle{Exercises}
+
+\doExercise{Solve using recursion trees (assume $T(0)$ is a constant)}{
+  \small
+  \begin{enumerate}
+    \item $T(n)~=~k+T(n-1)$ ~~where $k$ is a constant
+    \item $T(n)~=~k + T(n/2)$ ~~where $k$ is a constant
+    \item $T(n)~=~k + 2 * T(n/2)$ ~~where $k$ is a constant
+    \item $T(n)~=~n+T(n-1)$
+    \item $T(n)~=~n + T(n/2)$
+    \item $T(n)~=~n+2*T(n/2)$
+  \end{enumerate}
+}
+\end{frame}
+
+\begin{frame}\frametitle{Exercises}
+[more exercises: maxSumR; hanoi; heightBT]
+[maybe use PR's exercises too.]
 \end{frame}
 
 
+\byothers{Pedro Ribeiro, slides 2}{62-69}{ribeiro/2_asymptoticanalysis_02102018.pdf}
 
-\section{Average case}
+\begin{frame}\frametitle{Exercises}
+\doSimpleExercise{Calculate the asymptotic complexity of the 3 exercises above (\texttt{maxSumR}, \texttt{hanoi}, and \texttt{heightBT}), indicating which case you used.}
+    \end{frame}
+
+% \begin{frame}[t]\frametitle{...}
+    
+% [example with merge sort; avoid substitution method (or glimpse for a given guess); focus on recurrent trees]
+
+% [exercises both from Ribeiro and JBB]
+
+% [Later: simplified version of master theorem and short exercises]
+
+% \end{frame}
+
+
+
+\section{Average case -- next slides}
 
 \begin{frame}\frametitle{Recall goal}
     
