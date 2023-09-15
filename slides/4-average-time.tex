@@ -1,0 +1,96 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{etex} % fixes new-dimension error
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx,amsmath}
+\usepackage{stmaryrd} % cf. interleave
+\usepackage{booktabs}
+\usepackage{amscd}
+\usepackage{multicol}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{alltt}
+\usepackage{proof}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[new]{old-arrows}
+\usepackage[all]{xy}
+\usepackage{pgfplots}
+\usepackage{textcomp}
+
+\input{macros/macros}
+%-------------- template --------------------------------------------------
+\input{macros/beamerconf}
+%----------------------------------------------------------------------------
+
+\begin{document}
+
+\setLecture{4}{Average Time and Probabilistic Programs [WiP]}
+\frame[plain]{\titlepage}
+
+
+\begin{frame}[t]\frametitle{Overview}
+
+
+  \begin{itemize}
+    {\color{black!25}
+    \item Measuring {precisely} performance of algorithms
+    \item Measuring {asymptotically} performance of algorithms
+    \item Analysing {recursive} functions}
+    \item Measuring \structure{precisely} the \alert{average time} of algorithms
+    {\color{black!25}
+    \item Possibly: sorting algorithms \texttt{bubbleSort}, \texttt{swapSort}, \texttt{insertionSort}, \texttt{mergeSort}, \texttt{quickSort}}
+    \item Next: analysis of sequences of operations (\alert{amortised analysis})
+  \end{itemize}
+\end{frame}
+
+
+\section{Average case}
+
+\begin{frame}[fragile]\frametitle{Recall goal}
+
+\begin{lstlisting}[language=C++,linewidth=50mm]
+int count = 0;
+for (int i=0; i<n; i++)
+  if (v[i] == 0) count++
+\end{lstlisting}    
+
+\frsplitt{
+  \begin{block}{RAM}
+  \begin{itemize}
+    \item worst-case: $T(n) = 5+5n$
+    \item best-case: $T(n) = 5+4n$
+  \end{itemize}  
+  \end{block}
+}{
+  \begin{alertblock}{\#array-accesses + \#count-increments}
+  \begin{itemize}
+    \item worst-case: $T(n) = 2n$
+    \item best-case: $T(n) = n$
+    \item \alert{
+      average-case: $\overline{T}(n) = n + \sum_{0\leq r < n}P(v[r]=0)$}
+  \end{itemize}  
+  \end{alertblock}
+}
+\end{frame}
+
+
+\begin{frame}\frametitle{Recall arithmetic series}
+    
+...
+
+\end{frame}
+
+\begin{frame}\frametitle{Recall geometric series}
+    
+...
+
+\end{frame}
+
+
+% \section{Motivation}
+% \byothers{Charles E. Leiserson}{3-19}{Cormen_Algorithms_Slides.pdf}
+% \byothers{Pedro Ribeiro, slides 2}{1-2}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+
+\end{document}
