@@ -46,8 +46,6 @@
 \end{frame}
 
 
-\section{Average case}
-
 \begin{frame}[fragile]\frametitle{Recall goal}
 
 \begin{lstlisting}[language=C++,linewidth=50mm]
@@ -76,6 +74,9 @@ for (int i=0; i<n; i++)
 \end{frame}
 
 
+\section{Preliminaries: series}
+
+
 \begin{frame}\frametitle{Recall arithmetic series}
     
 ...
@@ -85,6 +86,56 @@ for (int i=0; i<n; i++)
 \begin{frame}\frametitle{Recall geometric series}
     
 ...
+
+\end{frame}
+
+
+\section{Calculating average cases}
+
+\begin{frame}[fragile]\frametitle{Binary search}
+    
+...
+
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Two's complement}
+    
+...
+
+\end{frame}
+
+\begin{frame}\frametitle{Exercises}
+    
+...
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Quicksort analysis}
+    
+...
+
+(See animation at \url{https://visualgo.net/en/sorting}.)
+
+\end{frame}
+
+
+\byothers{Pedro Ribeiro, slides 4}{9-13}{ribeiro/4_probabilistic_22102018.pdf}
+
+\begin{frame}\frametitle{Las Vegas vs. Monte Carlo}
+
+\begin{itemize}
+  \item QuickSort always returns a \alert{correct result} (a sorted array) but its \structure{runtime is a random variable} (with $\mathcal{O}(n\text{ log }n)$ in expectation)
+  \item Some randomized algorithms are \alert{not guaranteed to be correct}, but their \structure{runtime is fixed}.
+\end{itemize}
+
+\begin{block}{Las Vegas Algorithms}
+Randomized algorithms that always output the correct answer, and whose runtimes are random variables.
+\end{block}
+
+\begin{alertblock}{Monte Carlo Algorithms}
+Randomized algorithms that always terminate in a given time bound, but are correct with at least some (high) probability.
+\end{alertblock}
 
 \end{frame}
 

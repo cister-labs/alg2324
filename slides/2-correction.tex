@@ -27,7 +27,7 @@
 \begin{document}
 
 % \setLectureBasic{Cyber-Physical Computation}
-\setLecture{2}{Algorithms: Correction [WiP]}
+\setLecture{2}{Algorithm Correction [WiP]}
 \frame[plain]{\titlepage}
 
 
@@ -68,7 +68,7 @@ int fc (int x, int y){
 }
 \end{lstlisting}
 \begin{lstlisting}[language=C++]
-int ff (int a[], int N){
+int fd (int a[], int N){
   // pre: N>0
   ...
   // pos:
@@ -80,6 +80,11 @@ int ff (int a[], int N){
 \end{column}
 \end{columns}
 \end{frame}
+
+% fa: max
+% fb: common divisor
+% fc: common multiplier
+% fd (ff): max list
 
 % int fd (int a[], int N){
 %   // pre: N>0
@@ -94,7 +99,7 @@ int ff (int a[], int N){
 \begin{frame}{When is an algorithm correct?}
   \doExercise{Formulate pre- and post-conditions:}{
 \!\texttt{int prod (int x, int y)} -- product of two integers
-\\\texttt{int mdc (int x, int y)} -- greatest common divisor of 2 positive integers
+\\\texttt{int gcd (int x, int y)} -- greatest common divisor of 2 positive integers
 \\\texttt{int sum (int v[], int N)} -- sum of elements in an array
 \\\texttt{int maxPOrd (int v[], int N)} -- length of the longest sorted prefix of an array
 \\\texttt{int isSorted (int v[], int N)} --  tests if an array is sorted (growing)
@@ -109,11 +114,16 @@ int ff (int a[], int N){
 
   \doExercise{Find initial states that show these are not valid (and fix pre-cond.)}{
   ~\\[-5mm]\begin{enumerate}
-    \item \texttt{\{True\} r=x+y; \{r$\geq$x\}}
-    \item \texttt{\{True\} x=x+y; y=x-y; x=x-y; \{x == y\}}
+    \item \texttt{\{True\} r=x+y; \{r$\geq$x\}} % r>=x[r/x+y] = x+y>=x (y>=0)
+    \item \texttt{\{True\} x=x+y; y=x-y; x=x-y; \{x==y\}}
+        % going bwd: {x-y == x (x==2y)}; {x==2(x-y) (x==2y)}; {x+y==2y (x==y)}}
     \item \texttt{\{True\} x=x+y; y=x-y; x=x-y; \{x$\neq$y\}}
     \item \texttt{\{True\} if(x>y) r=x-y; else r=y-x; \{r>0\}}
+       % x>y && x-y>0  ||  x<=y && y-x>0  (x>y || F)  (x>y)
     \item \texttt{\{True\} while (x>0) \{y=y+1; x=x-1;\} \{y>x\}}
+       % (x>0 && y+x>0 (y>0)) || x<=0 ) -- y=10,x=1
+       % x>0 ---> y'=y+x && x'=0
+       %     --->  {y+x>0} y=y+x; {y>0} x=0 {y>x}
   \end{enumerate}
   }
   % fix pre
@@ -217,21 +227,21 @@ int mult1 (int x, int y){
 \textbf{line} & \textbf{\texttt{x}} & \textbf{\texttt{y}} &
   \textbf{\texttt{a}} & \textbf{\texttt{b}} & \textbf{\texttt{r}} 
 \\\midrule
-4 & 4 & 5 & 4 & 5 & 0 \\
+\textcolor{black!50}{4} & 4 & 5 & 4 & 5 & 0 \\
 \midrule
-6 & 4 & 5 & 4 & 5 & 5 \\
-7 & 4 & 5 & 3 & 5 & 5 \\
+\textcolor{black!50}{6} & 4 & 5 & 4 & 5 & 5 \\
+\textcolor{black!50}{7} & 4 & 5 & 3 & 5 & 5 \\
 \midrule
-6 & 4 & 5 & 3 & 5 & 10 \\
-7 & 4 & 5 & 2 & 5 & 10 \\
+\textcolor{black!50}{6} & 4 & 5 & 3 & 5 & 10 \\
+\textcolor{black!50}{7} & 4 & 5 & 2 & 5 & 10 \\
 \midrule
-6 & 4 & 5 & 2 & 5 & 15 \\
-7 & 4 & 5 & 1 & 5 & 15 \\
+\textcolor{black!50}{6} & 4 & 5 & 2 & 5 & 15 \\
+\textcolor{black!50}{7} & 4 & 5 & 1 & 5 & 15 \\
 \midrule
-6 & 4 & 5 & 1 & 5 & 20 \\
-7 & 4 & 5 & 0 & 5 & 20 \\
+\textcolor{black!50}{6} & 4 & 5 & 1 & 5 & 20 \\
+\textcolor{black!50}{7} & 4 & 5 & 0 & 5 & 20 \\
 \midrule
-10 & 4 & 5 & 0 & 5 & 20 \\
+\textcolor{black!50}{10} & 4 & 5 & 0 & 5 & 20 \\
 \bottomrule
 \end{tabular}
 \end{column}
