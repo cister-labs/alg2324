@@ -213,7 +213,7 @@ int grow(int v[], int N) {
 
 \doSimpleExercise{What is the best and worst case for \texttt{maxgrow} wrt comparisons of array elements?}
 ~\\[-10mm]
-\doSimpleExercise{How many comparisons in each case?}
+\doSimpleExercise{How many comparisons are in each case?}
 
 % Worst case when i+=m replaces i++?
 \end{frame}
@@ -225,10 +225,10 @@ int grow(int v[], int N) {
 
 \begin{frame}[t]\frametitle{Examples}
     ~\\[-8mm]
-    \begin{block}{Big Oh ($O$)}
-        $3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} O(n^2)$\only<2->{\structure<2>{ ~~because~~} $ 3n^2 >3n^2 -100n+6$}
-      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} O(n^3)$\only<2->{\structure<2>{ ~~because~~} $0.01n^3 >3n^2 -100n+6$}
-      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} O(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2$ when $n>c$}
+    \begin{block}{Big Oh ($\mathcal{O}$)}
+        $3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} \mathcal{O}(n^2)$\only<2->{\structure<2>{ ~~because~~} $ 3n^2 >3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} \mathcal{O}(n^3)$\only<2->{\structure<2>{ ~~because~~} $0.01n^3 >3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} \mathcal{O}(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2$ when $n>c$}
     \end{block}
 
     \begin{block}{Big Omega ($\Omega$)}
@@ -238,8 +238,8 @@ int grow(int v[], int N) {
     \end{block}
 
     \begin{block}{Big Theta ($\Theta$)}
-        $3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{=   }} \Theta(n^2)$\only<4->{\structure<4>{ ~~because~~} $O$ and $\Omega$}
-      \\$3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{\neq}} \Theta(n^3)$\only<4->{\structure<4>{ ~~because~~} $O$ only}
+        $3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{=   }} \Theta(n^2)$\only<4->{\structure<4>{ ~~because~~} $\mathcal{O}$ and $\Omega$}
+      \\$3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{\neq}} \Theta(n^3)$\only<4->{\structure<4>{ ~~because~~} $\mathcal{O}$ only}
       \\$3n^2 - 100n + 6 \only<1-3>{\alert{~{=}?~}}\only<4->{\alert<4>{\neq}} \Theta(n)$  \only<4->{\structure<4>{~~~because~~} $\Omega$ only}
     \end{block}
 

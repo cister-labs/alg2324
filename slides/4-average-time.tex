@@ -79,14 +79,58 @@ for (int i=0; i<n; i++)
 
 \begin{frame}\frametitle{Recall arithmetic series}
     
-...
+\begin{align*}
+  \alert{\sum_{i=1}^n i} &~=~ 1 + 2 + \ldots + n ~=~ \frac{n(n+1)}{2}
+  \\
+  \alert{\sum_{i=a}^b i} &~=~ a + (a+1) + \ldots + b ~=~
+    \frac{(a-n+1)(a+b)}{2}
+\end{align*}
 
+~\\[8mm]
+
+\begin{block}{Intuition}
+\centering
+\big[number of elements\big] $\times$ \big[middle value\big]  
+\end{block}
 \end{frame}
 
-\begin{frame}\frametitle{Recall geometric series}
-    
-...
+\begin{frame}\frametitle{Recall geometric series I} 
+\begin{align*}
+  \alert{\sum_{i=0}^n x^i} &~=~ 1 + x + x^2 + \ldots + x^n ~=~
+      \frac{x^{n+1}-1}{x-1}
+\end{align*}
 
+~\\[2mm]
+
+\begin{block}{Proof}
+\centering
+Let $\structure{S}=\alert{\sum_{i=0}^n x^i}$. Then:
+$$\structure{S}\times x ~=~ x + x^2 + \ldots + x^{n+1}$$
+Hence we know $\Big[(\structure{S}\times x)-\structure{S} ~=~ x^{n+1}-1\Big]$.
+\\
+Simplifying we get $\Big[\structure{S} ~=~ \frac{x^{n+1}-1}{x-1}\Big]$.
+\end{block}
+\end{frame}
+
+\begin{frame}\frametitle{Recall geometric series II}
+\begin{align*}
+  \alert{\sum_{i=1}^n i \times x^{i-1}} &~=~ x + (2\times x^2) + \ldots + (n\times x^n) ~=~
+      \frac{b\times x^{n+1}-(n+1)\times x^n +1}{(x-1)^2}
+\end{align*}
+
+~\\[2mm]
+
+\begin{block}{Proof}
+\centering
+Recall $\Big[\structure{S} ~=~ \frac{x^{n+1}-1}{x-1}\Big]$.
+Derive both:
+\begin{align*}
+ S' = (1 + x + x^2 + \ldots + x^n)'~~\alert{=}~~\frac{x^{n+1}-1}{x-1}
+\\
+\left(\frac{x^{n+1}-1}{x-1}\right)'~~\alert{=}~~
+   \frac{b\times x^{n+1}-(n+1)\times x^n +1}{(x-1)^2}
+\end{align*}
+\end{block}
 \end{frame}
 
 
