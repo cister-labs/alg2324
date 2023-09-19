@@ -47,10 +47,10 @@ Students should be able to understand the relationship between algorithm design,
 # Literature and Material
 
 ### Slides
-- [Introduction to the course (1-intro.pdf)](slides/1-intro.pdf)
-- [Algorithm Correction (2-correction.pdf)](slides/2-correction.pdf)
-- [Counting steps and Asymptotic Notation (3-countingsteps.pdf)](slides/2-correction.pdf)
-- [Average-time and probabilistic algorithms (3-average-time.pdf)](slides/2-correction.pdf)
+1. [Introduction to the course (1-intro.pdf)](slides/1-intro.pdf)
+2. [Algorithm Correction (2-correction.pdf)](slides/2-correction.pdf)
+3. [Counting steps and Asymptotic Notation (3-countingsteps.pdf)](slides/3-countingsteps.pdf)
+4. [Average-time and probabilistic algorithms (4-average-time.pdf)](slides/4-average-time.pdf)
 
 ### Main book
 

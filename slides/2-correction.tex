@@ -251,26 +251,25 @@ int mult1 (int x, int y){
   \begin{itemize}
     \item \texttt{x} and \texttt{y} never change
     \item \texttt{r} grows proportionally as \texttt{a} shrinks
-    \item \alert{guess:} $I \stackrel{\cdot}{~=~} \texttt{a*y} + \texttt{r} = \texttt{x*y}$
+    \item \alert{guess:} $\structure{I} \stackrel{\vartriangle}{~=~} \texttt{a*y} + \texttt{r} = \texttt{x*y}$
     \pause
-    \item Need to show:
-      \\ $\texttt{x>=0} \alert{\Rightarrow} \structure{I'}$
+    \item Need to show:\\[-8mm]
+      \begin{align*}
+        \texttt{x>=0} &\alert{\Rightarrow} \structure{I'}\\
       %~~~~(where $I' = I[\texttt{x$\backslash$a},\texttt{b$\backslash$y},\texttt{r$\backslash$0}]$)
-      \\ $I \land \texttt{a>0} \alert{\Rightarrow} \structure{I'}$
-      \\ $I \land \lnot(\texttt{a>0}) \alert{\Rightarrow} \texttt{r} = \texttt{x*y}$
+        \structure{I} \land \texttt{a>0} &\alert{\Rightarrow} \structure{I'}\\
+        \structure{I} \land \lnot(\texttt{a>0}) &\alert{\Rightarrow} \texttt{r} = \texttt{x*y}
+        ~\\[-12mm]
+      \end{align*}
     \pause
     \item (Not all works -- enrich invariant!)
   \end{itemize}
 }
 \end{columns}
-
-    
-
-
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{More exercises}
 
+\begin{frame}[fragile]\frametitle{More exercises}
 \begin{columns}
 \begin{column}{0.48\textwidth}
 % 0,1,2,..,n
@@ -414,10 +413,10 @@ int ssearch (int x, int a[], int N){
   
   Technique that measures the distance between the current state and the final state.
 
-  \begin{block}{A loop variant is an \textbf{integer expression} s.t.}
+  \begin{block}{A loop variant $\structure{V}$ is an \textbf{integer expression} s.t.}
     \begin{itemize}
-      \item is positive in the beginning of each round
-      \item decreases in every round
+      \item is positive in the beginning of each round ($c \land I ~\Rightarrow~ \structure{V}>0$)
+      \item decreases in every round ($I ~\Rightarrow~ \structure{V} > \structure{V'}$)
     \end{itemize}
   \end{block}
 
@@ -434,8 +433,14 @@ while (y <= r) {
 \end{column}
 \begin{column}{0.48\textwidth}
   \begin{itemize}
-    \item $r-y$ is not a good variant
-    \item \only<1>{...}\only<2->{$r-y+1$ is a good variant}
+    \item $\structure{V} = r-y$ is not a good variant
+    \item \only<1>{...}\only<2->{$\structure{V} =r-y+1$ is a good variant}
+      \only<3->{
+      \\[3mm] $~~~y\leq r \alert{\Rightarrow} \structure{V} > 0$ at each round
+      % V>0 <=> r-y+1 > 0 <=> y<r+1 <=> y<=r (OK)
+      \\ $~~~\structure{V} > \structure{V'}$ after each round
+    }
+
   \end{itemize}
 \end{column}
 \end{columns}
