@@ -41,16 +41,16 @@ Students should be able to understand the relationship between algorithm design,
 
 # Lectures
 
-- __22 Sep 24__: Introduction ([1-intro.pdf](slides/1-intro.pdf))
+- __22 Sep 24__: Introduction ([1-intro.pdf](slides/1-intro.pdf)) and algorithm correctness ([2-correctness.pdf)](slides/2-correctness.pdf))
 - ...
 
 # Literature and Material
 
 ### Slides
-1. [Introduction to the course (1-intro.pdf)](slides/1-intro.pdf)
-2. [Algorithm Correction (2-correction.pdf)](slides/2-correction.pdf)
-3. [Counting steps and Asymptotic Notation (3-countingsteps.pdf)](slides/3-countingsteps.pdf)
-4. [Average-time and probabilistic algorithms (4-average-time.pdf)](slides/4-average-time.pdf)
+1. [Introduction to the course](slides/1-intro.pdf)
+2. [Algorithm Correctness](slides/2-correctness.pdf)
+3. [Counting steps and Asymptotic Notation](slides/3-countingsteps.pdf)
+4. [Average-time and probabilistic algorithms](slides/4-average-time.pdf)
 
 ### Main book
 
