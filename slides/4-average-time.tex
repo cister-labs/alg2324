@@ -80,10 +80,10 @@ for (int i=0; i<n; i++)
 \begin{frame}\frametitle{Recall arithmetic series}
     
 \begin{align*}
-  \alert{\sum_{i=1}^n i} &~=~ 1 + 2 + \ldots + n ~=~ \frac{n(n+1)}{2}
+  \alert{\sum_{i=1}^n i} &~=~ 1 + 2 + \ldots + n ~=~ \structure{\frac{n(n+1)}{2}}
   \\
   \alert{\sum_{i=a}^b i} &~=~ a + (a+1) + \ldots + b ~=~
-    \frac{(a-n+1)(a+b)}{2}
+    \structure{\frac{(a-b+1)(a+b)}{2}}
 \end{align*}
 
 ~\\[8mm]
@@ -97,7 +97,7 @@ for (int i=0; i<n; i++)
 \begin{frame}\frametitle{Recall geometric series I} 
 \begin{align*}
   \alert{\sum_{i=0}^n x^i} &~=~ 1 + x + x^2 + \ldots + x^n ~=~
-      \frac{x^{n+1}-1}{x-1}
+      \structure{\frac{x^{n+1}-1}{x-1}}
 \end{align*}
 
 ~\\[2mm]
@@ -115,20 +115,24 @@ Simplifying we get $\Big[\structure{S} ~=~ \frac{x^{n+1}-1}{x-1}\Big]$.
 \begin{frame}\frametitle{Recall geometric series II}
 \begin{align*}
   \alert{\sum_{i=1}^n i \times x^{i-1}} &~=~ x + (2\times x^2) + \ldots + (n\times x^n) ~=~
-      \frac{b\times x^{n+1}-(n+1)\times x^n +1}{(x-1)^2}
+      \structure{\frac{n\times x^{n+1}-(n+1)\times x^n +1}{(x-1)^2}}
 \end{align*}
 
 ~\\[2mm]
 
 \begin{block}{Proof}
 \centering
-Recall $\Big[\structure{S} ~=~ \frac{x^{n+1}-1}{x-1}\Big]$.
+Recall $\Big[S ~=~ \sum_{i=1}^n x^i ~=~ \frac{x^{n+1}-1}{x-1}\Big]$.
 Derive both:
 \begin{align*}
- S' = (1 + x + x^2 + \ldots + x^n)'~~\alert{=}~~\frac{x^{n+1}-1}{x-1}
+ S'
+   ~~\alert{=}~~ (1 + x + x^2 + \ldots + x^n)'
+  &~~\alert{=}~~ 0 + 1 + 2x + \ldots + n\times x^{n-1}
+   ~~\alert{=}~~\alert{\sum_{i=1}^n i \times x^{i-1}}
 \\
-\left(\frac{x^{n+1}-1}{x-1}\right)'~~\alert{=}~~
-   \frac{b\times x^{n+1}-(n+1)\times x^n +1}{(x-1)^2}
+\left(\frac{x^{n+1}-1}{x-1}\right)'
+  &~~\alert{=}~~
+   \structure{\frac{n\times x^{n+1}-(n+1)\times x^n +1}{(x-1)^2}}
 \end{align*}
 \end{block}
 \end{frame}
