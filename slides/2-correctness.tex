@@ -35,6 +35,8 @@
 
 \byothers{Pedro Ribeiro, slides 1}{1-5}{ribeiro/1_invariants_18092018.pdf}
 
+\section{Specification}
+
 \begin{frame}[fragile]{When is an algorithm correct?}
 ~\\[-8mm]
 \doSimpleExercise{What do these functions do?}
@@ -94,7 +96,6 @@ int fd (int a[], int N){
 %   return p;
 % }
 
-\section{Specification}
 
 \begin{frame}{When is an algorithm correct?}
   \doExercise{Formulate pre- and post-conditions:}{
@@ -133,7 +134,6 @@ int fd (int a[], int N){
 
 \section{Partial correctness}
 
-\byothers{Pedro Ribeiro, slides 1}{6-11}{ribeiro/1_invariants_18092018.pdf}
 
 \begin{frame}{Using rules for Hoare triples}
   $$\begin{array}{c}
@@ -154,6 +154,8 @@ int fd (int a[], int N){
       \item $(\alert{I} \land \lnot c) \Rightarrow Q$: After the cycle the post-condition holds.
     \end{enumerate}
 \end{frame}
+
+\byothers{Pedro Ribeiro, slides 1}{6-11}{ribeiro/1_invariants_18092018.pdf}
 
 
 \begin{frame}[fragile]{Exercises}
