@@ -140,10 +140,103 @@ Derive both:
 
 \section{Calculating average cases}
 
-\begin{frame}[fragile]\frametitle{Binary search}
-    
-...
 
+\begin{frame}\frametitle{Average case}
+    
+The average time to execute an algorithm is given as the \alert{expected value} for its execution, assuming that each run $r$ has a cost $c_r$ and a probability $p_r$.
+
+\begin{block}{Expected cost}
+  $$\overline{T}(N) = \sum_r p_r \times c_r$$
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Example: Linear search}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={lsearch}]
+int lsearch(int x, int N, int v[])
+{
+  // pre: sorted array v
+  int i;
+  i =0;
+  while ((i<N) && (v[i] < x))
+    i ++;
+  if ((i==N) || (v[i] != x))
+    return (-1);
+  else return i;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\only<1-2>{
+\begin{itemize}
+  \item Count array accesses
+  \item Best case: $T(N) = 2$
+  \item Worst case: $T(N) = N+1$
+  \item Average case: $\overline{T}(N) = \ldots$
+  \pause
+  \begin{itemize}
+    \item assuming array with uniformly distributed values and a random \texttt{x}
+    \item same probability to do $0,1,\ldots,N-1$ cycle iterations
+    \item Hence: \alert{$N$ different runs, each}
+    \begin{itemize}
+      \item \structure{probability:} $1/N$
+      \item \structure{cost:} \#cycles + 1
+    \end{itemize}
+    \end{itemize}
+\end{itemize}
+}\only<3->{
+  \begin{align*}
+    \structure{\overline{T}(N)} &= \sum_{i=1}^N \frac{1}{N} \times (i+1)
+    \only<4->{
+    \\&= \frac{1}{N} \times \sum_{i=1}^N (i+1)
+    \\&= \frac{1}{N} \times \sum_{i=2}^{N+1} i
+    \\&= \frac{1}{N} \times \frac{N\times(N+3)}{2}
+    \\&= \alert{\frac{N+3}{2}}}
+  \end{align*}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Binary search}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={bsearch}]
+int bsearch(int x, int N, int v[])
+{
+  int i,s,m;
+  i=0; s=N-1;
+  while (i<s){
+    m= (i+s)/2;
+    if (v[m] == x) i = s = m;
+    else if (v[m] > x) s = m-1;
+    else i = m+1;
+  }
+  if ((i>s) || (v[i] != x))
+    return (-1);
+  else return i;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\doExercise{Calculate best/worst/average cases}{
+  \begin{itemize}
+    \item Count array accesses
+    \item Best case: $T(N) = \alert{?}$
+    \item Worst case: $T(N) = \alert{?}$
+    \item Average case: $\overline{T}(N) = \alert{?}$
+  \end{itemize}
+}
+% count number of times the cycle can go - worst log2(N) (each 2n+1 accesses)
+% average case, in N runs
+%  1 run cost 1 (1 cycle, prob 1/N), 2 runs at cost 2 (2 cycles, prob 2/N), 4 runs at cost 3 (3 cycles, prob 4/N)...
+%  k runs.... 
+\end{column}
+\end{columns}
 \end{frame}
 
 
