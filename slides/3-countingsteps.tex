@@ -115,17 +115,18 @@ for (int i=0; i<n; i++)
   
 \begin{columns}
 \begin{column}{0.48\textwidth}
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++,emph={bubbleSort,swap}]
 void bubbleSort(int v[], int N){
   int i, j;
   for (i=N-1; i>0; i--)
     for (j=0; j<i; j++)
-      if (v[j] > v[j+1]) swap(v,j,j+1);
+      if (v[j] > v[j+1])
+        swap(v,j,j+1);
 }
 \end{lstlisting}
 \end{column}
 \begin{column}{0.48\textwidth}
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++,emph={iSort,swap}]
 void iSort(int v[], int N){
   int i, j;
   for (i=1; i<N; i++)
@@ -148,7 +149,7 @@ void iSort(int v[], int N){
   
 \begin{columns}
 \begin{column}{0.48\textwidth}
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++,emph={mult1}]
 int mult1 (int x, int y){
   int a, b, r;
   a=x; b=y; r=0;
@@ -161,7 +162,7 @@ int mult1 (int x, int y){
 \end{lstlisting}
 \end{column}
 \begin{column}{0.48\textwidth}
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++,emph={mult2}]
 int mult2 (int x, int y){
   int a, b, r;
   a=x; b=y; r=0;

@@ -326,7 +326,7 @@ int partition(int N, int v[]){
   for (i=0; i<N-1; i++)
     if (v[i]<v[N-1])
       swap(v,i,j++);
-    swap(v,N-1,j);
+  swap(v,N-1,j);
   return j ;
 }
 \end{lstlisting}
