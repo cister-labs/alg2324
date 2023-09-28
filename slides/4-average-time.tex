@@ -225,7 +225,7 @@ int bsearch(int x, int N, int v[])
 \begin{column}{0.48\textwidth}
 \doExercise{Calculate best/worst/average cases}{
   \begin{itemize}
-    \item Count array accesses
+    \item Count array accesses / nr. cycles
     \item Best case: $T(N) = \alert{?}$
     \item Worst case: $T(N) = \alert{?}$
     \item Average case: $\overline{T}(N) = \alert{?}$
@@ -239,18 +239,82 @@ int bsearch(int x, int N, int v[])
 \end{columns}
 \end{frame}
 
+\begin{frame}\frametitle{Binary search: Intuition for worst case}    
+  \begin{itemize}
+    % \item In an array of size $N$, there are N+1 cases (finding at a given position, or not finding).
+    \item Example: \structure{N=15, worst case}
+    \begin{itemize}
+      \item \alert{1st cycle:} check \texttt{v[N/2]} (7 remaining)
+      \item \alert{2nd cycle:} check \texttt{v[N/4]} (or \texttt{v[3N/4]} -- 3 remaining)
+      \item \alert{3rd cycle:} check \texttt{v[N/8]} (or (...) -- 1 remaining)
+      \item \alert{after:} check \texttt{v[N/16]} or (...)) if equal to \texttt{x}
+    \end{itemize}
+    \item N=15, (3 cycles) $\to$ 4 ``cycles''
+    \item In general: $c$ cycles for $2^c-1$ elements
+    \item ... i.e., $N = 2^{c}-1 \structure{~~\equiv~~} c = log_2(N+1)$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Binary search: Intuition for average case}
+  \begin{itemize}
+    \item In an array of size $N$, there are N+1 cases (finding at a given position, or not finding).
+    \item Assume N+1 cases have equal probability (!)
+    \item Example: \structure{N=15}
+    \begin{itemize}
+      \item \alert{1 cycle:} find at \texttt{v[N/2]}  -- prob. $\frac{1}{N+1}$
+      \item \alert{2 cycles:} find at \texttt{v[N/4]} or \texttt{v[3N/4]} -- prob. $\frac{2}{N+1}$
+      \item \alert{3 cycles:} find at \texttt{v[N/8]} or (...) -- prob. $\frac{4}{N+1}$
+      \item \alert{after:} find (or not) at \texttt{v[N/16] (..)} -- prob. $\frac{8}{N+1}$
+    \end{itemize}
+    \item N=15, average cycles: $1\times\frac{1}{N+1} + 2\times\frac{2}{N+1} + 3\times\frac{4}{N+1} + 
+            4\times\frac{8}{N+1}$
+    \item In general: $1\times\frac{1}{N+1} + \ldots + log_2(N+1)\times\frac{2^{log_2(N+1)-1}}{N+1}$
+    \item ... i.e.,
+      $\alert{\overline T(N))}
+      = \structure{\sum_{i=1}^{log_2(N+1)} i\times \frac{2^{i-1}}{N+1}}
+      = \structure{\ldots}$
+  \end{itemize}
+\end{frame}
+
+
 
 \begin{frame}[fragile]\frametitle{Two's complement}
-    
-...
-
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={twoComplement}]
+void twoComplement(char b[], int N)
+{
+  int i = N-1;
+  while (i>0 && !b[i])
+    i --;
+  i --;
+  while ( i >=0) {
+    b[i] = !b[i];
+    i--;
+  }
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\doExercise{Calculate best/worst/average cases}{
+  \begin{itemize}
+    \item Count nr. cycles
+    \item Best case: $T(N) = \alert{?}$
+    \item Worst case: $T(N) = \alert{?}$
+    \item Average case: $\overline{T}(N) = \alert{?}$
+  \end{itemize}
+}
+%...
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}\frametitle{Exercises}
-    
-...
 
-\end{frame}
+% \begin{frame}\frametitle{Exercises}
+%     ...
+% \end{frame}
+
 
 \begin{frame}[fragile]\frametitle{Quicksort analysis}
     
