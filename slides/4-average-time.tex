@@ -318,9 +318,34 @@ void twoComplement(char b[], int N)
 
 \begin{frame}[fragile]\frametitle{Quicksort analysis}
     
-...
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={partition,quickSort,swap}]
+int partition(int N, int v[]){
+  int i, j=0;
+  for (i=0; i<N-1; i++)
+    if (v[i]<v[N-1])
+      swap(v,i,j++);
+    swap(v,N-1,j);
+  return j ;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={partition,quickSort}]
+void quickSort(int N, int v[]){
+  int p;
+  if (N>1) {
+    p = partition(N, v);
+    quickSort(v, p);
+    quickSort(v+p+1, N-p-1);
+  }
+}
+\end{lstlisting}
+\end{column}
+\end{columns}
 
-(See animation at \url{https://visualgo.net/en/sorting}.)
+(See animation at \url{https://visualgo.net/en/sorting})
 
 \end{frame}
 
