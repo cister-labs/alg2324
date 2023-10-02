@@ -41,8 +41,9 @@ Students should be able to understand the relationship between algorithm design,
 
 # Lectures
 
-- __22 Sep 24__: Introduction ([1-intro.pdf](slides/1-intro.pdf)) and algorithm correctness: specifying problems logically ([2-correctness.pdf - pages 1-18)](slides/2-correctness.pdf))
-- __29 Sep 24__: Algorithm correctness: partial and complete correctness ([2-correctness.pdf)](slides/2-correctness.pdf))
+- __22 Sep 23__: Introduction ([1-intro.pdf](slides/1-intro.pdf)) and algorithm correctness: specifying problems logically ([2-correctness.pdf - pages 1-18)](slides/2-correctness.pdf))
+- __29 Sep 23__: Algorithm correctness: partial and complete correctness ([2-correctness.pdf - pages 13-36)](slides/2-correctness.pdf)); motivation for performance analysis ([3-countingsteps.pdf - pages 1-29](slides/3-countingsteps.pdf))
+- __6 Oct 23__: Counting steps and asymptotic notation ([3-countingsteps.pdf](slides/3-countingsteps.pdf))
 - ...
 
 # Literature and Material
