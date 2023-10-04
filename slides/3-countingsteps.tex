@@ -273,12 +273,12 @@ int sum(int v[], int a, int b) {
     \begin{block}{Big Oh ($\mathcal{O}$)}
         $3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} \mathcal{O}(n^2)$\only<2->{\structure<2>{ ~~because~~} $ 3n^2 >3n^2 -100n+6$}
       \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{=   }} \mathcal{O}(n^3)$\only<2->{\structure<2>{ ~~because~~} $0.01n^3 >3n^2 -100n+6$}
-      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} \mathcal{O}(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2$ when $n>c$}
+      \\$3n^2 -100n+6 \only<1>{\alert{~{=}?~}}\only<2->{\alert<2>{\neq}} \mathcal{O}(n)$  \only<2->{\structure<2>{~~~because~~} $c\cdot n<3n^2$~~~when $n>c$}
     \end{block}
 
     \begin{block}{Big Omega ($\Omega$)}
         $3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{=   }} \Omega(n^2)$\only<3->{\structure<3>{ ~~because~~} $2.99n^2 <3n^2 -100n+6$}
-      \\$3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{\neq}} \Omega(n^3)$\only<3->{\structure<3>{ ~~because~~} $n^3 > 3n^2 -100n+6$}
+      \\$3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{\neq}} \Omega(n^3)$\only<3->{\structure<3>{ ~~because~~} $c\cdot n^3 > 3n^2 -100n+6$~~~for any $c>0$}
       \\$3n^2 -100n+6 \only<1-2>{\alert{~{=}?~}}\only<3->{\alert<3>{=   }} \Omega(n)$  \only<3->{\structure<3>{~~~because~~} $10^{10^{10}} n < 3n^2 -100+6$}
     \end{block}
 
@@ -307,12 +307,13 @@ int sum(int v[], int a, int b) {
 
 \begin{frame}[fragile]\frametitle{Binary search}
 
-To analyse the complexity of a recursive function, we typically define the time $T$ using \emph{recurring equations}.
+To analyse the complexity of a recursive function, we typically define the time $T$ using \alert{recurring equations}.
 
 \begin{columns}
 \begin{column}{0.48\textwidth}
 \begin{lstlisting}[language=C++,emph={bsearch}]
 int bsearch(int x, int v[], int N){
+  // pre: v is sorted
   int i;
   if (N<=0) i = -1;
   else {
@@ -352,7 +353,7 @@ int bsearch(int x, int v[], int N){
 \end{columns}
 \end{frame}
 
-\byothers{Pedro Ribeiro, slides 2}{38-61}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+\byothers{Pedro Ribeiro, slides 2}{38-60}{ribeiro/2_asymptoticanalysis_02102018.pdf}
 
 
 \begin{frame}[fragile]\frametitle{Exercises}
@@ -443,7 +444,7 @@ int heightBT(BTree t){
 % \end{frame}
 
 
-\byothers{Pedro Ribeiro, slides 2}{62-69}{ribeiro/2_asymptoticanalysis_02102018.pdf}
+\byothers{Pedro Ribeiro, slides 2}{61-69}{ribeiro/2_asymptoticanalysis_02102018.pdf}
 
 \byothers{Pedro Ribeiro, exercises 3}{1-2}{ribeiro/ex03.pdf}
 
