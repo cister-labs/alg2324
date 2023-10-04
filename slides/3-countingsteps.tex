@@ -138,11 +138,11 @@ void iSort(int v[], int N){
 \end{column}
 \end{columns}
 
-\doSimpleExercise{What is the best and worst case wrt comparisons between array elements?}
+\doSimpleExercise{What is the best and worst case wrt \textbf{comparisons between array elements}?\\[3mm]}
 ~\\[-12mm]
-\doSimpleExercise{What is the best and worst case wrt swaps?}
+\doSimpleExercise{What is the best and worst case wrt \textbf{swaps}?}
 ~\\[-12mm]
-\doSimpleExercise{How many of these operations are performed in both cases?}
+\doSimpleExercise{\textbf{How many} of these operations are performed in both cases?}
 \end{frame}
 
 \begin{frame}[fragile]{Exercises}
@@ -206,17 +206,52 @@ int grow(int v[], int N) {
   return i;
 }
 
+\end{lstlisting}
+\end{column}
+\end{columns}
+
+~\\[-6mm]
+\doSimpleExercise{What is the best and worst case for \texttt{maxgrow} wrt comparisons of array elements?}
+~\\[-11mm]
+\doSimpleExercise{How many comparisons are in each case?}
+~\\[-12mm]
+\doSimpleExercise{If we replace \texttt{i++} by \texttt{i+=m}, how many comparisons are in the worst case?}
+
+% Worst case when i+=m replaces i++?
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Exercises @home}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={maxSum,sum}]
+int maxSum(int v[], int N) {
+  int i, j, r=0, m;
+  for (i=0; i<N; i++)
+    for (j=i; j<N; j++) {
+      m = sum(v,i,j);
+      if (m>r) r = m;
+    }
+  return r;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={sum}]
+int sum(int v[], int a, int b) {
+  int r = 0, i;
+  for (i=a; i<=b; i++)
+    r=r+v[i];
+  return r;
+}
 
 
 \end{lstlisting}
 \end{column}
 \end{columns}
 
-\doSimpleExercise{What is the best and worst case for \texttt{maxgrow} wrt comparisons of array elements?}
-~\\[-10mm]
-\doSimpleExercise{How many comparisons are in each case?}
-
-% Worst case when i+=m replaces i++?
+% ~\\[-10mm]
+\doSimpleExercise{What is the complexity \texttt{maxSum} wrt comparisons of array elements?}
 \end{frame}
 
 

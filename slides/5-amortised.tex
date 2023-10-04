@@ -1,0 +1,149 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{etex} % fixes new-dimension error
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx,amsmath}
+\usepackage{stmaryrd} % cf. interleave
+\usepackage{booktabs}
+\usepackage{amscd}
+\usepackage{multicol}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{alltt}
+\usepackage{proof}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[new]{old-arrows}
+\usepackage[all]{xy}
+\usepackage{pgfplots}
+\usepackage{textcomp}
+
+\input{macros/macros}
+%-------------- template --------------------------------------------------
+\input{macros/beamerconf}
+%----------------------------------------------------------------------------
+
+\begin{document}
+
+\setLecture{5}{Amortised analysis of algorithms [WiP]}
+\frame[plain]{\titlepage}
+
+
+\begin{frame}[t]\frametitle{Overview}
+
+
+  \begin{itemize}
+    {\color{black!25}
+    \item Measuring {precisely} performance of algorithms
+    \item Measuring {asymptotically} performance of algorithms
+    \item Analysing {recursive} functions
+    \item Measuring {precisely} the {average time} of algorithms}
+    \item Analysis of sequences of operations (\alert{amortised analysis})
+    {\color{black!25}
+    \item Next: Graph traversals and Dynamic programming
+    }
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Motivation}
+  \centering
+
+  \begin{block}{}
+    Running once \alert{vs.}\\
+    Running many times
+  \end{block}
+
+  \begin{block}{}
+    Insert a value in a Hashtable \alert{vs.}\\
+    Insert 500 values in a Hashtable
+  \end{block}
+
+  \bigskip
+  {\Large Relevant when studying data structures -- when the \structure{state} changes}
+
+
+\end{frame}
+
+
+\byothers{Pedro Ribeiro, slides 3}{1-12}{ribeiro/3_amortized_08102018.pdf}
+
+% log(N)
+% sum 0<=i<=log(N) 2^i = 2^(Log(N)+1)-1 = Theta(2^Log(N)) = Theta(N) 
+% total cost = Theta(N) [insert] + Theta(N) [resize] = Theta(N)
+% Amortised cost = Theta(N/N) = Theta(1)
+
+
+\begin{frame}[fragile]\frametitle{Exercise -- Queue as 2 Stacks}
+
+\begin{columns}
+\begin{column}{0.25\textwidth}
+\begin{lstlisting}[language=C++,emph={Stack,Queue}]
+typedef struct queue {
+   Stack A;
+   Stack B;
+} Queue;
+\end{lstlisting}
+\end{column}
+\begin{column}{0.71\textwidth}
+Consider 2 operations
+\begin{itemize}
+    \item \texttt{enqueue} \emph{pushes} a value in stack \texttt{A};
+    \item \texttt{dequeue} \emph{pops} a value from stack \texttt{B} if non-empty otherwise \emph{pops} all elements from stack \texttt{A} and \emph{pushes} them to stack \texttt{B}, except the last one that is returned;
+    \item assume each \emph{push} and \emph{pop} has a cost of 1;
+  \end{itemize}
+\end{column}
+\end{columns}
+
+~\\[-3mm]
+\doSimpleExercise{
+  What is the cost of the best and worst scenarios for each operation?
+}
+~\\[-11mm]
+\doSimpleExercise{What is the worst possible sequence of $N$ operations?}
+~\\[-11mm]
+\doSimpleExercise{What is the amortised cost for each operation, using the \alert{aggregate method}?}
+\end{frame}
+
+\byothers{Pedro Ribeiro, slides 3}{13-18}{ribeiro/3_amortized_08102018.pdf}
+
+% exercises
+\begin{frame}[fragile]\frametitle{Exercise -- Queue as 2 Stacks (again)}
+
+\begin{columns}
+\begin{column}{0.25\textwidth}
+\begin{lstlisting}[language=C++,emph={Stack,Queue}]
+typedef struct queue {
+   Stack A;
+   Stack B;
+} Queue;
+\end{lstlisting}
+\end{column}
+\begin{column}{0.71\textwidth}
+Consider 2 operations
+\begin{itemize}
+    \item \texttt{enqueue} \emph{pushes} a value in stack \texttt{A};
+    \item \texttt{dequeue} \emph{pops} a value from stack \texttt{B} if non-empty otherwise \emph{pops} all elements from stack \texttt{A} and \emph{pushes} them to stack \texttt{B}, except the last one that is returned;
+    \item assume each \emph{push} and \emph{pop} has a cost of 1;
+  \end{itemize}
+\end{column}
+\end{columns}
+
+~\\[-3mm]
+\doSimpleExercise{What is the amortised cost for each operation, using the \alert{potential method}?}
+\end{frame}
+
+
+% binary example
+\byothers{Pedro Ribeiro, slides 3}{19-23}{ribeiro/3_amortized_08102018.pdf}
+
+% recapp
+\byothers{Pedro Ribeiro, slides 3}{29-30}{ribeiro/3_amortized_08102018.pdf}
+
+\section{Queue as 2 stacks -- another explanation}
+
+\byothers{Pedro Ribeiro, slides 3}{24-28}{ribeiro/3_amortized_08102018.pdf}
+
+
+\end{document}
