@@ -175,7 +175,7 @@ int mult2 (int x, int y){
 \end{lstlisting}
 \end{column}
 \end{columns}
-\doSimpleExercise{In each case, how many primitive operations (\texttt{+ - *2 /2 \%2}) are performed?}
+\doSimpleExercise{In each case, how many primitive operations (\texttt{+ - *2 /2 \%2}) are performed in the worst case?}
 Note: In \texttt{mult2}, consider the size $N$ as the number of bits used to represent \texttt{x} and \texttt{y}; e.g., with 5 bits you can represent a positive integer until 31.
 
 % Considere que o tamanho do input  ́e o nu ́mero de bits necess ́arios para representar os nu ́meros inteiros passados como argumento. Recorde que, por exemplo, os nu ́meros cuja representa ̧c ̃ao requer 5 bits s ̃ao {16, . . . , 31}.}
@@ -249,9 +249,18 @@ int sum(int v[], int a, int b) {
 \end{lstlisting}
 \end{column}
 \end{columns}
+%
+% T(N) = ...
+% =   sum_i=0^(N-1) (N-i)*((N-1-i)/2)
+% =   1/2 * sum_i=0^(N-1) (N-i)(N-1-i)
+% =   1/2 * sum_i=0^(N-1) (N^2-N-iN -iN +i +i^2)
+% =   1/2 * (sum (N^2-N) - sum iN - sum iN + sum i + sum i^2)
+% =   1/2 * (N(N^2-N) - N*sum i + sum i^2)
+% = Theta(N^3)
+
 
 % ~\\[-10mm]
-\doSimpleExercise{What is the complexity \texttt{maxSum} wrt comparisons of array elements?}
+\doSimpleExercise{What is the complexity \texttt{maxSum} wrt accesses to the array?}
 \end{frame}
 
 
