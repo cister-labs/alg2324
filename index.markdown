@@ -118,12 +118,12 @@ All students will be admitted to the exams.
 
 # Calculation formula of final grade
 
- - (IT) intermediate mid-term test (mandatory) 30%
+ - __(IT)__ intermediate mid-term test (mandatory) 30%
    + __10 Nov__, during the lecture time
 
- - (FE) final exam: 70% (can be replaced by IE)
+ - __(FE)__ final exam: 70% (can be replaced by IT2)
 
- - (IT2) improvement test: can replace the final exam. Required IT2 >= 8.
+ - __(IT2)__ improvement test: can replace the final exam. Required IT2 >= 8.
 
 
 1st Exam ("Normal") classification: C = max(FE,IT2)*0.7+ IT*0.3 >= 9.5
