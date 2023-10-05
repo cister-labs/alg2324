@@ -119,13 +119,14 @@ All students will be admitted to the exams.
 # Calculation formula of final grade
 
  - (IT) intermediate mid-term test (mandatory) 30%
+   + __10 Nov__, during the lecture time
 
  - (FE) final exam: 70% (can be replaced by IE)
 
- - (IE) improvement exam: can replace the final exam. Required IE >= 8.
+ - (IT2) improvement test: can replace the final exam. Required IT2 >= 8.
 
 
-1st Exam ("Normal") classification: C = max(FE,IE)*0.7+ IT*0.3 >= 9.5
+1st Exam ("Normal") classification: C = max(FE,IT2)*0.7+ IT*0.3 >= 9.5
 
 2nd Exam ("Recurso") classification: C = max(FE*0.7+IT*0.3, FE) >= 9.5
 
@@ -143,4 +144,4 @@ By final exam.
 
 The day and time for _appointments_ is Friday afternoon ([José Proença](https://jose.proenca.org)). Please
 email me the day before if you wish to meet. If you prefer you
-can also just send an email with your questions to [José Proença](mailto:pro@isep.ipp.pt), or we can try to book an online meeting[.](https://github.com/cister-labs/alg2324)
+can also just send an email with your questions to [José Proença](mailto:jose.proenca@fc.up.pt), or we can try to book an online meeting[.](https://github.com/cister-labs/alg2324)
