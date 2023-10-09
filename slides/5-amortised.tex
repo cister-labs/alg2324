@@ -146,4 +146,38 @@ Consider 2 operations
 \byothers{Pedro Ribeiro, slides 3}{24-28}{ribeiro/3_amortized_08102018.pdf}
 
 
+\begin{frame}[fragile]\frametitle{Exercises}
+    
+\begin{columns}
+\begin{column}{0.50\textwidth}
+\begin{lstlisting}[language=C++,emph={insert_rem,malloc,free}]
+  node *insert_rem(node *p, int x) {
+    node *new = malloc(sizeof(node));
+    new->value = x;
+    while (p && x > p->value)
+      { aux=p; p=p->next; free(aux);}
+    new->next = p;
+    return new;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.51\textwidth}
+\begin{itemize}
+    \item \alert{inserting} to the head \structure{costs 1};
+    \item \alert{removing} from the head \structure{costs 1};
+    \item E.g., \texttt{insert\_rem(4,[1,3,5,7])} returns \texttt{[4,5,7]} and costs 3.
+  \end{itemize}
+\end{column}
+\end{columns}
+
+~\\[-5mm]
+\doSimpleExercise{What is the asymptotic \alert{execution time} % of \texttt{insert\_rem}
+for the best and worst cases?}
+~\\[-10mm]
+\doSimpleExercise{What is the amortised cost for \texttt{insert\_rem}, using the \alert{aggregate method}?}
+~\\[-10mm]
+\doSimpleExercise{Present a \alert{potential function} for \texttt{insert\_rem} and use it to compute the \alert{constant amortised cost}.}
+
+\end{frame}
+
 \end{document}
