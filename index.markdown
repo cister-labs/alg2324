@@ -10,6 +10,8 @@ layout: home
 
 This course is about designing algorithms for computational problems, and how to think clearly about analyzing correctness and running time. The main goal is to provide the intellectual tools needed for designing and analyzing your own algorithms for new problems you need to solve in the future.
 
+The official plan of this course is hosted in FCUP [here](https://sigarra.up.pt/fcup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=528072).
+
 # Learning outcomes and competences
 
 Students should be able to understand the relationship between algorithm design, correctness proof and complexity analysis. Students should learn algorithmic techniques of general applicability and get to know some major algorithms in a few common domains. They will also obtain practical experience in applying generic algorithms to specific problems.
