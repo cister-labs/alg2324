@@ -254,8 +254,8 @@ int bsearch(int x, int N, int v[])
     \begin{itemize}
       \item \alert{1st cycle:} check \texttt{v[N/2]} (7 remaining)
       \item \alert{2nd cycle:} check \texttt{v[N/4]} (or \texttt{v[3N/4]} -- 3 remaining)
-      \item \alert{3rd cycle:} check \texttt{v[N/8]} (or (...) -- 1 remaining)
-      \item \alert{after:} check \texttt{v[N/16]} or (...)) if equal to \texttt{x}
+      \item \alert{3rd cycle:} check \texttt{v[N/8]} (or \texttt{v[3N/8]}... -- 1 remaining)
+      \item \alert{after:} check \texttt{v[N/16]} (or \texttt{v[3N/16]}...) if equal to \texttt{x}
     \end{itemize}
     \item N=15, (3 cycles) $\to$ 4 ``cycles''
     \item In general: $c$ cycles for $2^c-1$ elements
@@ -288,6 +288,7 @@ int bsearch(int x, int N, int v[])
 
 
 \begin{frame}[fragile]\frametitle{Two's complement}
+\centering
 \begin{columns}
 \begin{column}{0.48\textwidth}
 \begin{lstlisting}[language=C++,emph={twoComplement}]
@@ -297,7 +298,7 @@ void twoComplement(char b[], int N)
   while (i>0 && !b[i])
     i --;
   i --;
-  while ( i >=0) {
+  while (i >=0) {
     b[i] = !b[i];
     i--;
   }
@@ -307,7 +308,7 @@ void twoComplement(char b[], int N)
 \begin{column}{0.48\textwidth}
 \doExercise{Calculate best/worst/average cases}{
   \begin{itemize}
-    \item Count nr. cycles
+    \item Count nr. \emph{bit updates}
     \item Best case: $T(N) = \alert{?}$
     \item Worst case: $T(N) = \alert{?}$
     \item Average case: $\overline{T}(N) = \alert{?}$
@@ -316,12 +317,90 @@ void twoComplement(char b[], int N)
 %...
 \end{column}
 \end{columns}
+
+\only<2->{\wrap{
+\texttt{twoComplement(0001) = 1111} \emph{~~~~-- ~~1 vs -1}
+\\
+\texttt{twoComplement(0010) = 1110} \emph{~~~~-- ~~2 vs -2}
+\\
+\texttt{twoComplement(0011) = 1101} \emph{~~~~-- ~~3 vs -3}
+\\
+\texttt{twoComplement(01010000) = 10110000}
+}}
+
 \end{frame}
+
+% 1/2 prob of best case (N-1 updates)
+% 1/2^2 prob of N-2 updates
+% 1/2^3 prob of N-3 updates
+% ...
+% 1/2^N prob of N-N updates (0 updates)
+% =
+% sum_i=1^N (N-i)/2^i
+% = sum(N/2^i) - sum(i/2^i)...
+
 
 
 % \begin{frame}\frametitle{Exercises}
 %     ...
 % \end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Exercises}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={maxgrow,grow}]
+int maxgrow(int v[], int N) {
+  int r = 1, i = 0, m;
+  while (i<N-1) {
+    m = grow(v+i, N-i);
+    if (m>r) r = m;
+    i++;
+  }
+  return r;
+}
+\end{lstlisting}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{lstlisting}[language=C++,emph={grow}]
+int grow(int v[], int N) {
+  int i;
+  for (i=1; i<N; i++)
+    if (v[i] < v[i-1]) break;
+  return i;
+}
+
+\end{lstlisting}
+\end{column}
+\end{columns}
+
+~\\[-6mm]
+\doSimpleExercise{How many comparison of array elements exist in the average case for \texttt{grow}?
+\\
+(assume \texttt{v[i]<v[i-1]} has 50\% chances of succeeding)}
+~\\[-11mm]
+\doSimpleExercise{How many comparison of array elements exist in the average case for \texttt{maxgrow}?}
+
+% Worst case when i+=m replaces i++?
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Exercises @home}
+\centering
+
+\begin{lstlisting}[language=C++,emph={iSort,swap}]
+void iSort(int v[], int N){
+  int i, j;
+  for (i=1; i<N; i++)
+    for (j=i; j>0 && v[j-1]>v[j];
+         j--)
+      swap(v,j,j-1);
+}
+\end{lstlisting}
+
+\doSimpleExercise{How many comparison of array elements exist in the average case?
+\\(as before, assume \texttt{v[j-1]>v[j]} has 50\% chances of succeeding)}
+\end{frame}
 
 
 \begin{frame}[fragile]\frametitle{Quicksort analysis}
@@ -548,7 +627,7 @@ void quickSort(int N, int v[]){
     $ N\times\overline{T}(N) - (N-1)\times \overline{T}(N-1) \alert{~=~}$
     \\~~~$
        N\times(N-1) + 2\times \sum_{p=0}^{N-1}\overline{T}(p) - 
-       (N-1)\times(N-2) + 2\times \sum_{p=0}^{N-2}\overline{T}(p)$
+       (N-1)\times(N-2) - 2\times \sum_{p=0}^{N-2}\overline{T}(p)$
   \end{block} 
 
   \only<2->{

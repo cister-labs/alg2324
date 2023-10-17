@@ -1,0 +1,147 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{etex} % fixes new-dimension error
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx,amsmath}
+\usepackage{stmaryrd} % cf. interleave
+\usepackage{booktabs}
+\usepackage{amscd}
+\usepackage{multicol}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{alltt}
+\usepackage{proof}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[new]{old-arrows}
+\usepackage[all]{xy}
+\usepackage{pgfplots}
+\usepackage{textcomp}
+
+\input{macros/macros}
+%-------------- template --------------------------------------------------
+\input{macros/beamerconf}
+%----------------------------------------------------------------------------
+
+\begin{document}
+
+\setLecture{6}{Data Structures [WiP]}
+\frame[plain]{\titlepage}
+
+
+\begin{frame}[t]\frametitle{Overview}
+
+  \begin{itemize}
+    \item Stacks/Queues/PriorityQueues (\alert{minHeap})
+    \item Hashtables/AVLs
+    \item Graphs
+    \begin{itemize}
+      \item Detph/Breathfirst traversals
+      \item Acyclic -- topological order
+      \item Transitive closure
+      \item Minimum spanning tree
+      \item Shortest/longest path
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Motivation}
+  \centering
+
+  \begin{block}{We have seen that}
+    Different \alert{data structures} are better at different \structure{operations}
+  \end{block}
+
+  \begin{block}{We will see}
+    Useful data structures and associated operations (code)
+  \end{block}
+
+  \begin{exampleblock}{Examples}
+    Arrays can have operations to implement sets, multisets, trees, etc.
+  \end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Linked lists}
+  
+  ... As a linked list...
+
+  add, remove, append, concat
+  
+\end{frame}
+
+
+\begin{frame}\frametitle{Stacks}
+  
+  with static arrays
+
+  with linked lists
+
+  with dynamic arrays (initStack, push/double, pop)
+
+\end{frame}
+
+\begin{frame}\frametitle{Queues}
+    
+  with static arrays (circular)
+
+  with linked lists (store 2 pointers)
+  
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Priority Queues}
+      
+  min-heap array
+
+  example - how it can be used for a priority queue
+
+\begin{lstlisting}[language=C++,emph={prQueue}]
+#define MAX 1000
+typedef struct prQueue {
+  int values [MAX];
+  int size ;
+} PriorityQ ;
+\end{lstlisting}
+
+  exercises (bubble up, bubble down, complexity)
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Exercises}
+  
+  \doExercise{Using the previous example, provide an expression to:}{
+    \noindent
+    \!\!1. calculate the index of the \emph{left} tree given a position \texttt{i}
+    \\2. calculate the index of the \emph{right} tree given a position \texttt{i}
+    \\3. calculate the index of the \emph{parent} of a given a position \texttt{i}
+    \\4. calculate the index of the index of the \emph{first leaf}
+  }
+
+  \doExercise{Define \texttt{bubbleUp(int i, int h[])}}{
+    Fixes a min-heap by swapping the \texttt{i}-th element with the parent while needed.
+  }
+
+  \doExercise{Define \texttt{bubbleDown(int i, int h[], int N)}}{
+    Fixes a min-heap by swapping the \texttt{i}-th element with one of the children while needed.
+  }
+\end{frame}
+
+
+\begin{frame}\frametitle{Exercises}
+  \doExercise{Define the following operations:}{
+    \noindent
+    \!\!- \texttt{void empty (PriorityQueue *q)} -- initialises the queue;
+    \\- \texttt{int isEmpty (PriorityQueue *q)} -- tests if \texttt{q} is empty;
+    \\- \texttt{int add (int x, PriorityQueue *q)} -- adds a value \texttt{x}, returning 0 when the queue is full;
+    \\- \texttt{int remove (PriorityQueue *q, int *rem)} -- removes the next element, and copies it to $rem$.
+  }
+\end{frame}
+
+
+\end{document}
