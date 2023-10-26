@@ -390,6 +390,34 @@ int ssearch (int x, int a[], int N){
 \end{columns}
 \end{frame}
 
+% inv: (p == -1 && forall_{0 <= k < i} a[k] != x) ||
+%      ( (0 <= p < i ) && x == a[p])
+% init - ok
+
+% Maint - 
+%   IF p == -1 && i < N && x >= a[i] AND a[i] == x, then
+
+%   (p' == -1 && forall_{0 <= k < i'} a[k] != x) ||
+%      ( (0 <= p' < i' ) && x == a[p'])
+% = (i == -1 && forall_{0 <= k < i+1} a[k] != x) ||
+%      ( (0 <= i < i+1 ) && x == a[i]) --> 2nd part true
+
+%   IF p == -1 && i < N && x >= a[i] AND a[i] != x, then
+
+%   (p' == -1 && forall_{0 <= k < i'} a[k] != x) ||
+%      ( (0 <= p' < i' ) && x == a[p'])
+% = (p == -1 && forall_{0 <= k < i+1} a[k] != x) ||
+%      ( (0 <= p < i+1 ) && x == a[p])
+% = (p == -1 && forall_{0 <= k < i} a[k] != x && a[i]!=x) -- 1st part true
+
+% Util -
+%   IF p != -1 || i >= N || x < a[i]
+%   AND (p == -1 && forall_{0 <= k < i} a[k] != x) ||
+%      ( (0 <= p < i ) && x == a[p])
+%   THEN post?
+%     - ( (0 <= p < N ) && x == a[p]) is true when i>=N (&& i<=N inv), p!=1 is false, and x<a[i] is any
+%     - (p == -1 && forall_{0 <= k < N} a[k] != x) is true when ... (need pre cond) p!=1 is true and the rest is any... (either i=N and 3rd any, or i<N and a[k]...?)
+
 
 \section{Complete correctness}
 
