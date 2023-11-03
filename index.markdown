@@ -48,9 +48,9 @@ Students should be able to understand the relationship between algorithm design,
 - __29 Sep 23__: Algorithm correctness: partial and complete correctness ([2-correctness.pdf - pages 13-36](slides/2-correctness.pdf)); motivation for performance analysis ([3-countingsteps.pdf - pages 1-29](slides/3-countingsteps.pdf))
 - __6 Oct 23__: Algorithms complexity: best and worst case analysis. Counting steps and asymptotic notation ([3-countingsteps.pdf - pages 23-63](slides/3-countingsteps.pdf))
 - __13 Oct 23__: Exercises with asymptotic notation ([3-countingsteps.pdf - pages 64-66](slides/3-countingsteps.pdf)); Time complexity of recursive algorithms ([3-countingsteps.pdf - pages 67-95](slides/3-countingsteps.pdf))
-- __20 Oct 23__: Exercises on the time complexity of recursive algorithms and the master theorem ([3-countingsteps.pdf - pages 96-112](slides/3-countingsteps.pdf)); Average time complexity ([4-average-time.pdf - pages 1-19](slides/4-average-time.pdf)
-- __27 Oct 23__: ...
-- __10 Nov 23__: Test; ...
+- __20 Oct 23__: Exercises on the time complexity of recursive algorithms and the master theorem ([3-countingsteps.pdf - pages 96-112](slides/3-countingsteps.pdf)); Average time complexity ([4-average-time.pdf - pages 1-19](slides/4-average-time.pdf))
+- __27 Oct 23__: Average time complexity and analysis of the quicksort algorithm ([4-average-time.pdf - pages 20-32](slides/4-average-time.pdf)); Randomised algorithms ([4-average-time.pdf - pages 33-40](slides/4-average-time.pdf)); Amortised analysis and the aggregate method ([5-amortised.pdf - pages 1-11](slides/5-amortised.pdf))
+- __10 Nov 23__: Test: 9h30-10h30 (Specification, Correction, Worst/Best time analysis, Asymptotic analysis); Rest of the lesson starts at 11h15 - Amortised analysis ([5-amortised.pdf](slides/5-amortised.pdf))
 
 
 # Literature and Material
@@ -126,7 +126,7 @@ All students will be admitted to the exams.
 # Calculation formula of final grade
 
  - __(IT)__ intermediate mid-term test (mandatory) 30%
-   + __10 Nov__, during the lecture time
+   + __10 Nov__, during the lecture time.
 
  - __(FE)__ final exam: 70% (can be replaced by IT2)
 

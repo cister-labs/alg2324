@@ -68,22 +68,299 @@
 \end{frame}
 
 
-\begin{frame}\frametitle{Linked lists}
-  
-  ... As a linked list...
+\section{Sets and Sequences}
 
-  add, remove, append, concat
+\begin{frame}[fragile]\frametitle{Sets and Multisets}
   
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++,emph={SetInt,MSetInt}]
+#define MAXS 100
+typedef char SetInt [MAXS] ;
+\end{lstlisting}
+
+% \only<1>{
+Given \texttt{SetInt s}:
+\\$5 \in \texttt{s} ~\Leftrightarrow~ \texttt{s[5]!=0}$
+% }
+% \only<2->{
+% \begin{lstlisting}[language=C++]
+% void initSet (SetInt);
+% int searchSet (SetInt , int);
+% int addSet (SetInt, int);
+% int emptySet (SetInt);
+% void unionSet (SetInt , SetInt , SetInt );
+% void intersectSet (SetInt , SetInt , SetInt );
+% void differenceSet (SetInt , SetInt , SetInt );
+% \end{lstlisting}
+% }
+\end{column}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++,emph={SetInt,MSetInt}]
+#define MAXMS 100
+typedef int MSetInt [MAXS] ;
+\end{lstlisting}
+
+% \only<1>{
+Given \texttt{MSetInt ms}:
+\\$\{4,4\} \subseteq \texttt{ms} ~\Leftrightarrow~ \texttt{ms[4]}\leq 2$
+% }
+% \only<2->{
+% \begin{lstlisting}[language=C++]
+% void initMSet ( MSetInt ) ; 
+% int searchMSet ( MSetInt , int ) ;
+% int addMSet ( MSetInt , int ) ;
+% int emptyMSet ( MSetInt ) ;
+% void unionMSet (MSetInt , MSetInt , SetInt );
+% void intersectMSet (MSetInt , MSetInt , MSetInt ); 
+% void differenceMSet (MSetInt , MSetInt , MSetInt );
+% \end{lstlisting}
+% }
+\end{column}
+\end{columns}
+
 \end{frame}
 
 
-\begin{frame}\frametitle{Stacks}
+\begin{frame}[fragile]\frametitle{Sets and Multisets -- operations}
+\centering
+
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++]
+void initSet      (SetInt);
+int  searchSet    (SetInt, int);
+int  addSet       (SetInt, int);
+int  emptySet     (SetInt);
+void unionSet     (SetInt, SetInt,
+                   SetInt);
+void intersectSet (SetInt, SetInt,
+                   SetInt);
+void differenceSet(SetInt, SetInt,
+                   SetInt);
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
+\begin{lstlisting}[language=C++]
+void initMSet      (MSetInt); 
+int  searchMSet    (MSetInt, int);
+int  addMSet       (MSetInt, int);
+int  emptyMSet     (MSetInt);
+void unionMSet     (MSetInt, MSetInt,
+                    SetInt);
+void intersectMSet (MSetInt, MSetInt,
+                    MSetInt); 
+void differenceMSet(MSetInt, MSetInt,
+                    MSetInt);
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+\doSimpleExercise{What is the expected cost of each function? Could you implement them?}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Sequences -- Recall linked lists}
   
-  with static arrays
+\begin{lstlisting}[language=C++,emph={list,LInt}]
+typedef struct list { int value ;
+struct list *next;
+} *LInt;
+\end{lstlisting}
 
-  with linked lists
+  % add, remove, append, concat
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++, emph={prev,LInt}]
+LInt add (int x, LInt l) {
+  LInt new =
+    malloc(sizeof(struct list));
+  if (new != NULL) {
+    new->value=x;
+    new->next=l ;
+  }
+return new;
+}
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={prev,LInt}]
+LInt dda (int x, LInt l) {
+  LInt pt = l;
+  while (pt != NULL) pt = pt->next;
+  pt = malloc(sizeof(struct list));
+  pt -> next = x;
+  pt -> next = NULL ;
+  return l ;
+}
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+\end{frame}
 
-  with dynamic arrays (initStack, push/double, pop)
+
+
+\begin{frame}[fragile]\frametitle{Sequences -- Recall linked lists (fixed)}
+  
+\begin{lstlisting}[language=C++,emph={list,LInt}]
+typedef struct list { int value ;
+struct list *next;
+} *LInt;
+\end{lstlisting}
+
+  % add, remove, append, concat
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++, emph={prev,LInt}]
+LInt add (int x, LInt l) {
+  LInt new = malloc(sizeof(struct list ));
+  if (new != NULL) {
+    new->value=x;
+    new->next=l ;
+  }
+return new;
+}
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={prev,LInt}]
+LInt dda (int x, LInt l) {
+  LInt pt = l, prev;
+  while (pt != NULL) {
+    prev = pt; pt = pt->next; }
+  pt = malloc(sizeof(struct list));
+  pt->next = x;
+  pt->next = NULL ;
+  if (l==NULL)  l = pt;
+  else prev->prox = pt;
+  return l;
+}
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+~\\[-6mm]
+\doSimpleExercise{What is the possible complexity of 
+  \texttt{lookup, concat, reverse}?
+}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Sequences -- reverse analysis}
+  
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++, emph={reverse1,reverse2,LInt}]
+LInt reverse1 (LInt l) {
+  LInt r, pt;
+  if (l==NULL || l->next==NULL) r=l;
+  else {
+    r = pt = reverse1 (l->next);
+    while (pt->next != NULL)
+      pt = pt->next;
+    pt->next = l;
+    l->next = NULL;
+  }
+  return r; }
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={reverse1,reverse2,LInt}]
+LInt reverse2 (LInt l) {
+  LInt r, tmp;
+  r = NULL;
+  while (l !=NULL) {
+    tmp=l; l=l->next;
+    tmp->next=r; r=tmp;
+  }
+  return r;
+}
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+~\\[-6mm]
+\doSimpleExercise{What is the complexity of each \texttt{reverse}?}
+~\\[-12mm]
+\doSimpleExercise{What is the (informal) loop invariant in \texttt{reverse2}, assuming:
+\\~~~ \texttt{pre:l==l$_0$} and \texttt{post:r==rev(l$_0$)}?}
+% r==l0?  rev(l)++r == rev(l0)
+\end{frame}
+
+
+\begin{frame}\frametitle{Complexity of collections in Scala}
+    
+    \centering
+
+    \begin{block}{}
+    {\huge \url{https://docs.scala-lang.org/overviews/collections-2.13/performance-characteristics.html}}      
+    \end{block}
+
+
+\end{frame}
+
+
+\section{Buffers (stacks and queueus)}
+
+
+\begin{frame}[fragile]\frametitle{Stacks}
+
+\begin{columns}
+\begin{column}{.32\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={stack,Stack}]
+#define MAX 1000
+typedef struct stack {
+  int values [MAX];
+  int sp;
+} Stack;
+\end{lstlisting}
+\only<2->{with static arrays}
+%
+\end{column}
+\begin{column}{.32\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={stack,Stack}]
+typedef struct cell {
+  int value;
+  struct cell *next;
+} Cell , *Stack;
+$~$
+\end{lstlisting}
+\only<2->{with linked lists}
+%
+\end{column}
+\begin{column}{.32\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={stack,Stack}]
+typedef struct stack {
+  int size ;
+  int *values ;
+  int sp;
+} Stack;
+\end{lstlisting}
+\only<2->{with dynamic arrays}
+%
+\end{column}
+\end{columns}
+  
+
+\only<2->{\doSimpleExercise{(Informally) what is the complexity of: \texttt{push}, \texttt{pop}, \texttt{head}?}}
+  % with static arrays
+
+  % with linked lists
+
+  % with dynamic arrays (initStack, push/double, pop)
 
 \end{frame}
 
