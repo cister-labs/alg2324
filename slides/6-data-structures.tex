@@ -344,8 +344,8 @@ $~$
 %
 \begin{lstlisting}[language=C++, emph={stack,Stack}]
 typedef struct stack {
-  int size ;
-  int *values ;
+  int size;
+  int *values;
   int sp;
 } Stack;
 \end{lstlisting}
@@ -364,21 +364,128 @@ typedef struct stack {
 
 \end{frame}
 
-\begin{frame}\frametitle{Queues}
+\begin{frame}[fragile]\frametitle{Exercise: Push-pop with dynamic arrays}
     
-  with static arrays (circular)
 
-  with linked lists (store 2 pointers)
-  
+\begin{columns}
+\begin{column}{.48\textwidth}
+\begin{lstlisting}[language=C++, emph={push,pop,doubleArray,realloc}]
+void push (Stack *s , int x){
+  if (s->sp == s->size)
+    doubleArray (s);
+  if (r == 0)
+    s->values[s->sp++] = x;
+}
+
+void doubleArray (Stack *s){
+  s->size *= 2;
+  s->values =
+    realloc(s->values, s->size);
+}
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={push,pop,doubleArray,realloc}]
+int pop (Stack *s){
+  // reduces by half when only
+  // 25% capacity is used
+  ...
+}
+
+void halfArray (Stack *s){
+  ...
+}
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+\doSimpleExercise{Implement the optimised \texttt{pop} function and discuss its complexity.}
+
 \end{frame}
 
 
+
+\begin{frame}[fragile]\frametitle{Queues}
+    
+\begin{columns}
+\begin{column}{.29\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={queue,Queue}]
+#define MAX 1000
+typedef struct queue
+{
+  int values [MAX];
+  int start, size;
+} Queue;
+$~$
+$~$
+\end{lstlisting}
+\only<2->{with static arrays (circular)}
+%
+\end{column}
+\begin{column}{.37\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={cell,Cell,Queue}]
+typedef struct cell {
+  int value ;
+  struct cell *prox ;
+} Cell ;
+
+typedef struct queue {
+  struct cell *start, *end;
+} Queue;
+\end{lstlisting}
+\only<2->{with linked lists\\~}
+%
+\end{column}
+\begin{column}{.29\textwidth}
+%
+\begin{lstlisting}[language=C++, emph={queue,Queue}]
+typedef struct queue
+{
+  int max;
+  int *values;
+  int start, size;
+} Queue;
+$~$
+$~$
+\end{lstlisting}
+\only<2->{with dynamic arrays (circular)}
+%
+\end{column}
+\end{columns}
+
+\only<2->{\doSimpleExercise{(Informally) what is the complexity of: \texttt{init}, \texttt{isEmpty}, \texttt{enqueue}, \texttt{dequeue}?}}
+
+\end{frame}
+
+
+
+% \begin{frame}\frametitle{Queues}
+    
+%   with static arrays (circular)
+
+%   with linked lists (store 2 pointers)
+  
+% \end{frame}
+
+
 \begin{frame}[fragile]\frametitle{Priority Queues}
-      
-  min-heap array
-
-  example - how it can be used for a priority queue
-
+\begin{columns}
+\begin{column}{.48\textwidth}
+%
+\begin{itemize}
+  \item Binary tree
+  \item Each node is larger than any of its children
+  \item Implemented as an array
+\end{itemize}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
 \begin{lstlisting}[language=C++,emph={prQueue}]
 #define MAX 1000
 typedef struct prQueue {
@@ -386,8 +493,26 @@ typedef struct prQueue {
   int size ;
 } PriorityQ ;
 \end{lstlisting}
+%
+\end{column}
+\end{columns}
 
-  exercises (bubble up, bubble down, complexity)
+
+\bigskip
+
+  \begin{exampleblock}{Tree example in the board}
+    \centering
+    \texttt{size=17~}%
+    \textcolor{black!40}{%
+    \texttt{~~0~~1~~2~~3~~4~~5~~6~~7~~8~~9 10 11 12 13 14 15 16~}}
+    \\\texttt{values:~~}%
+    \texttt{[10 15 11 16 22 35 20 21 23 34 37 80 43 22 25 24 28]}
+  \end{exampleblock}
+  % 10
+  % 15 11
+  % 16 22 35 20...
+
+  % exercises (bubble up, bubble down, complexity)
 
 \end{frame}
 
@@ -396,9 +521,9 @@ typedef struct prQueue {
   
   \doExercise{Using the previous example, provide an expression to:}{
     \noindent
-    \!\!1. calculate the index of the \emph{left} tree given a position \texttt{i}
-    \\2. calculate the index of the \emph{right} tree given a position \texttt{i}
-    \\3. calculate the index of the \emph{parent} of a given a position \texttt{i}
+    \!\!1. calculate the index of the \emph{left} tree given a position \texttt{i} % 2i+1
+    \\2. calculate the index of the \emph{right} tree given a position \texttt{i} % 2i+2
+    \\3. calculate the index of the \emph{parent} of a given a position \texttt{i} % (i-1)/2
     \\4. calculate the index of the index of the \emph{first leaf}
   }
 
@@ -422,5 +547,29 @@ typedef struct prQueue {
   }
 \end{frame}
 
+
+\section{Dictionaries}
+
+\begin{frame}\frametitle{Hashtables}
+
+\alert{Dictionary:} maps \structure{keys} to \structure{values}
+\\
+(Keys are unique)
+
+\begin{block}{Idea}
+  - \emph{Magic}function \alert{\texttt{hash}} converts a key into an index (number).
+  \\- The index points to the position of an array where the value \emph{should} be found.
+  \\- Usually the size of the array is \alert{less} than the set of possible keys, i.e., \structure{\texttt{hash} is not injective}.
+  \\- If 2 keys have the same \texttt{hash} value, there is a \emph{colision} that must be mitigated (alternative solutions exist).
+\end{block}
+
+\end{frame}
+
+
+\section{Balanced trees}
+
+\begin{frame}\frametitle{...}
+...
+\end{frame}
 
 \end{document}
