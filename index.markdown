@@ -18,7 +18,7 @@ Students should be able to understand the relationship between algorithm design,
 
 # Syllabus
 
-- Algorithm Correctness
+- Algorithm correctness
 - Complexity: worst/best-case analysis
 - Fundamentals of asymptotic analysis
 - Average-case and randomized algorithms
@@ -50,17 +50,24 @@ Students should be able to understand the relationship between algorithm design,
 - __13 Oct 23__: Exercises with asymptotic notation ([3-countingsteps.pdf - pages 64-66](slides/3-countingsteps.pdf)); Time complexity of recursive algorithms ([3-countingsteps.pdf - pages 67-95](slides/3-countingsteps.pdf))
 - __20 Oct 23__: Exercises on the time complexity of recursive algorithms and the master theorem ([3-countingsteps.pdf - pages 96-112](slides/3-countingsteps.pdf)); Average time complexity ([4-average-time.pdf - pages 1-19](slides/4-average-time.pdf))
 - __27 Oct 23__: Average time complexity and analysis of the quicksort algorithm ([4-average-time.pdf - pages 20-32](slides/4-average-time.pdf)); Randomised algorithms ([4-average-time.pdf - pages 33-40](slides/4-average-time.pdf)); Amortised analysis and the aggregate method ([5-amortised.pdf - pages 1-11](slides/5-amortised.pdf))
-- __10 Nov 23__: Test: 9h30-10h30 (Specification, Correction, Worst/Best time analysis, Asymptotic analysis); Rest of the lesson starts at 11h15 - Amortised analysis ([5-amortised.pdf](slides/5-amortised.pdf))
+- __10 Nov 23__: Test (30%): 9h30-10h30 (Specification, Correction, Worst/Best time analysis, Asymptotic analysis); Rest of the lesson starts at 11h15 - Amortised analysis ([5-amortised.pdf](slides/5-amortised.pdf))
+- __17 Nov 23__: tbd
+- __24 Nov 23__: tbd
+- __1 Dec 23__: _Holiday_
+- __8 Dec 23__: _Holiday_
+- __15 Dec 23__: Test (70%): 9h30-11h30 (all topics); no lesson after the test
+
 
 
 # Literature and Material
 
 ### Slides
 1. [Introduction to the course](slides/1-intro.pdf)
-2. [Algorithm Correctness](slides/2-correctness.pdf)
-3. [Counting steps and Asymptotic Notation](slides/3-countingsteps.pdf)
+2. [Algorithm correctness](slides/2-correctness.pdf)
+3. [Counting steps and asymptotic notation](slides/3-countingsteps.pdf)
 4. [Average-time and probabilistic algorithms](slides/4-average-time.pdf)
-5. [Amortised Analysis](slides/5-amortised.pdf)
+5. [Amortised analysis](slides/5-amortised.pdf)
+6. [Data structures](slides/6-data-structures.pdf)
 
 ### Main book
 
