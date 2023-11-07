@@ -26,7 +26,7 @@
 
 \begin{document}
 
-\setLecture{5}{Amortised analysis of algorithms [WiP]}
+\setLecture{5}{Amortised analysis of algorithms}
 \frame[plain]{\titlepage}
 
 
@@ -67,6 +67,8 @@
 \end{frame}
 
 
+\section{Amortised analysis}
+
 \byothers{Pedro Ribeiro, slides 3}{1-12}{ribeiro/3_amortized_08102018.pdf}
 
 % log(N)
@@ -77,6 +79,7 @@
 
 \begin{frame}[fragile]\frametitle{Exercise -- Queue as 2 Stacks}
 
+~\\[-3mm]
 \begin{columns}
 \begin{column}{0.25\textwidth}
 \begin{lstlisting}[language=C++,emph={Stack,Queue}]
@@ -96,7 +99,7 @@ Consider 2 operations
 \end{column}
 \end{columns}
 
-~\\[-3mm]
+~\\[-4mm]
 \doSimpleExercise{
   What is the cost of the best and worst scenarios for each operation?
 }

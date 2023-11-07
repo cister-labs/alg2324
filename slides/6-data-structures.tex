@@ -33,11 +33,11 @@
 \begin{frame}[t]\frametitle{Overview}
 
   \begin{itemize}
-    \item Stacks/Queues/PriorityQueues (\alert{minHeap})
-    \item Hashtables/AVLs
+    \item Stacks/Queues/PriorityQueues  %(\alert{minHeap})
+    \item Hashtables/Search trees
     \item Graphs
     \begin{itemize}
-      \item Detph/Breathfirst traversals
+      \item Depth/Breathfirst traversals
       \item Acyclic -- topological order
       \item Transitive closure
       \item Minimum spanning tree
@@ -127,7 +127,7 @@ Given \texttt{MSetInt ms}:
 
 \begin{columns}
 \begin{column}{.48\textwidth}
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++,emph={MSetInt,SetInt}]
 void initSet      (SetInt);
 int  searchSet    (SetInt, int);
 int  addSet       (SetInt, int);
@@ -143,7 +143,7 @@ void differenceSet(SetInt, SetInt,
 \end{column}
 \begin{column}{.50\textwidth}
 %
-\begin{lstlisting}[language=C++]
+\begin{lstlisting}[language=C++,emph={MSetInt,SetInt}]
 void initMSet      (MSetInt); 
 int  searchMSet    (MSetInt, int);
 int  addMSet       (MSetInt, int);
@@ -557,19 +557,222 @@ typedef struct prQueue {
 (Keys are unique)
 
 \begin{block}{Idea}
-  - \emph{Magic}function \alert{\texttt{hash}} converts a key into an index (number).
-  \\- The index points to the position of an array where the value \emph{should} be found.
+  - \alert{\emph{Magic} function \texttt{hash}} converts a key into an \structure{index} (number).
+  \\- This \structure{index} points to the position of an array where the value \emph{should} be found.
   \\- Usually the size of the array is \alert{less} than the set of possible keys, i.e., \structure{\texttt{hash} is not injective}.
-  \\- If 2 keys have the same \texttt{hash} value, there is a \emph{colision} that must be mitigated (alternative solutions exist).
+  \\- If 2 keys have the same \texttt{hash} value, there is a \alert{colision} that must be mitigated (alternative solutions exist).
 \end{block}
 
 \end{frame}
 
 
-\section{Balanced trees}
+\begin{frame}\frametitle{Hashtables: Closed and Open Addressing}
 
-\begin{frame}\frametitle{...}
-...
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    \begin{alertblock}{Closed Addressing (or chaining)}
+      - Table = \emph{array of linked lists}
+      \\
+      - Find value of key \alert{\texttt{k}}:
+      \\~~~- go to index \texttt{hash(k)}
+      \\~~~- traverse list until \texttt{k}
+    \end{alertblock}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \begin{exampleblock}{Open Addressing}
+      - Table = \emph{just an array}
+      \\
+      - Find value of key \alert{\texttt{k}}:
+      \\~~~- go to index \texttt{hash(k)}
+      \\~~~- \emph{``jump''} until \texttt{k}
+    \end{exampleblock}
+  \end{column}
+\end{columns}
+
+\bigskip
+
+\begin{block}{Some concerns}
+  - Use dynamic arrays (grow when the \alert{load factor} (\#keys/HSIZE) gets high)
+  \\~~~-Need to \emph{rehash}  
+  \\- Smart \emph{jumps} (\texttt{probe} function to know where to jump)
+  \\- Need to \emph{garbage collect} in open addressing
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Intuition: Hashtables with Closed Addressing}
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/HT-closed.png}
+  \\
+  {\footnotesize \textcolor{gray}{(from Wikipedia)}}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Hashtables with Closed Addressing}
+\begin{columns}
+\begin{column}{.61\textwidth}
+%
+\begin{itemize}
+  \item \texttt{int hash(\alert{\texttt{int}} k, int size);}
+  \item \texttt{void initTab(HTChain h);}
+  \item \texttt{int lookup(HTChain h, \alert{\texttt{int}} k, int *i);}
+  \item \texttt{int update(HTChain h, \alert{\texttt{int}} k, int i);}
+  \item \texttt{int remove(HTChain h, \alert{\texttt{int}} k);}
+\end{itemize}
+%
+\end{column}
+\begin{column}{.34\textwidth}
+%
+\begin{lstlisting}[language=C++,emph={HTChain,Bucket}]
+#define HSIZE 1000
+
+typedef struct bucket {
+  $\alert{\texttt{int}}$ key;
+  int info;
+  struct bucket *next;
+} *Bucket;
+
+typedef Bucket
+   HTChain[HSIZE];
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+\doSimpleExercise{Implement \texttt{lookup}}
+  % int p = hash (k,HSIZE); Bucket it;
+  % for (it = h[p]; it!=NULL && it->key!=k; it=it->next);
+  % if (it!=NULL) { *i = it->info; return 1;}
+  % else return 0;
+~\\[-10mm]
+\doSimpleExercise{(Informally) what is the expected complexity of each function?}
+\end{frame}
+
+
+\begin{frame}\frametitle{Intuition: Hashtables with Open Addressing}
+  \centering
+  ~\\[-12mm]
+  \includegraphics[width=0.6\textwidth]{images/HT-open.png}
+  \\
+  {\footnotesize \textcolor{gray}{(from Wikipedia)}}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Hashtables with Open Addressing}
+\begin{columns}
+\begin{column}{.71\textwidth}
+%
+\begin{itemize}
+  \item \texttt{int hash(\alert{\texttt{int}} k, int size);}
+  \item \texttt{void initTab(HashTable h);}
+  \item \texttt{void lookup(HashTable h, \alert{\texttt{int}} k, int *i);}
+  \item \texttt{void update(HashTable h, \alert{\texttt{int}} k, int i);}
+  \item \textcolor{black!40}{
+          \texttt{void remove(HashTable h, \alert{\texttt{int}} k);}}
+  \item \structure{
+          \texttt{int find\_probe (HashTable h, \alert{\texttt{int}} k)}}
+          \\~~~- linear vs. quadratic probing (why quadratic?)
+\end{itemize}
+%
+\end{column}
+\begin{column}{.34\textwidth}
+%
+\begin{lstlisting}[language=C++,emph={HashTable,Bucket}]
+#define HSIZE 1000
+#define STATUSFREE 0
+#define STATUSUSED 1
+
+typedef struct bucket {
+  int status ;
+  $\alert{\texttt{int}}$ key;
+  int info;
+} Bucket ;
+
+typedef Bucket
+  HashTable [HSIZE];
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+~\\[-7mm]
+\doSimpleExercise{Define a linear probing function and \texttt{update}.}
+~\\[-10mm]
+\doSimpleExercise{(Informally) what is the expected complexity of each function?}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Lookups: Open vs. Closed}
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/HT-lookups.png}
+  \\
+  {\footnotesize \textcolor{gray}{(from Wikipedia)}}
+\end{frame}
+    
+
+
+
+
+\begin{frame}[fragile]\frametitle{Removing with Open Addressing}
+\begin{columns}
+\begin{column}{.71\textwidth}
+%
+\begin{itemize}
+  \item \textcolor{black!40}{\texttt{int hash(\alert{\texttt{int}} k, int size);}}
+  \item \textcolor{black!40}{\texttt{void initTab(HashTable h);}}
+  \item \textcolor{black!40}{\texttt{void lookup(HashTable h, \alert{\texttt{int}} k, int *i);}}
+  \item \textcolor{black!40}{\texttt{void update(HashTable h, \alert{\texttt{int}} k, int i);}}
+  \item \textcolor{black!40}{\texttt{int find\_probe (HashTable h, \alert{\texttt{int}} k);}}
+  \item \texttt{void \structure{remove}(HashTable h, \alert{\texttt{int}} k);}
+\end{itemize}
+%%% find_probe gets more complex.
+%
+\end{column}
+\begin{column}{.34\textwidth}
+%
+\begin{lstlisting}[language=C++,emph={HashTable,Bucket}]
+#define HSIZE 1000
+#define STATUSFREE 0
+#define STATUSUSED 1
+#define $\structure{\texttt{STATUSDEL 2}}$
+
+typedef struct bucket {
+  int status ;
+  $\alert{\texttt{int}}$ key;
+  int info;
+} Bucket ;
+
+typedef Bucket
+  HashTable [HSIZE];
+\end{lstlisting}
+%
+\end{column}
+\end{columns}
+
+\doSimpleExercise{(Informally) what is the expected complexity of each function?}
+\end{frame}
+
+% \section{Balanced trees}
+
+\begin{frame}\frametitle{More dictionaries: balanced trees}
+
+[Binary Search Trees / AVL (self) / B-Tree / Red-Black]
+
+\end{frame}
+
+\section{Graphs}
+
+\begin{frame}\frametitle{Overview}
+    
+  \begin{itemize}
+    \item Depth/Breathfirst traversals
+    \item Acyclic -- topological order
+    \item Transitive closure
+    \item Minimum spanning tree
+    \item Shortest/longest path
+  \end{itemize}
+
 \end{frame}
 
 \end{document}
