@@ -697,8 +697,8 @@ typedef Bucket
 
 ~\\[-7mm]
 \doSimpleExercise{Define a linear probing function and \texttt{update}.}
-~\\[-10mm]
-\doSimpleExercise{(Informally) what is the expected complexity of each function?}
+% ~\\[-10mm]
+% \doSimpleExercise{(Informally) what is the expected complexity of each function?}
 \end{frame}
 
 
@@ -750,14 +750,69 @@ typedef Bucket
 \end{column}
 \end{columns}
 
-\doSimpleExercise{(Informally) what is the expected complexity of each function?}
+~\\[-6mm]
+\doSimpleExercise{How would you implement \texttt{update}?
+% ~\\[-12mm]
+% \doSimpleExercise{
+\\How would you implement a \emph{garbageCollect} that removes deleted cells? 
+\\What is their complexity?}
 \end{frame}
 
 % \section{Balanced trees}
 
 \begin{frame}\frametitle{More dictionaries: balanced trees}
 
-[Binary Search Trees / AVL (self) / B-Tree / Red-Black]
+\begin{block}{We will see:}
+  - Height- and weight-balanced tree
+  \\- Self-balancing binary search tree
+  \\~~~- AVL tree
+  % Adelson-Velsky and Landis
+  % oldest self-balancing binary search tree data structure to be invented.
+% \begin{tabular}{lcc}
+% \toprule
+% Function &  Amortized & Worst Case
+% \\\midrule
+% Search     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$\\
+% Insert     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$\\
+% Delete     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$\\
+% \bottomrule
+% \end{tabular}
+  \\~~~- Red-black tree
+  %  It requires in the worst case a small number, O(log n) in Big O notation, where nn is the number of objects in the tree, on average or amortized O(1), a constant number, of color changes (which are very quick in practice); and no more than three tree rotations (two for insertion).
+  % As of Java 8, the HashMap has been modified such that instead of using a LinkedList to store different elements with colliding hashcodes, a red–black tree is used.
+% \toprule
+% Function &  Amortized & Worst Case
+% \\\midrule
+% Search     & ${\mathcal{O}(\log n)}$ & ${\mathcal{O}(\log n)}$\\
+% Insert     & ${\mathcal{O}(1)}$ & ${\mathcal{O}(\log n)}$\\
+% Delete     & ${\mathcal{O}(1)}$ & ${\mathcal{O}(\log n)}$\\
+% \bottomrule
+% \end{tabular}
+\end{block}
+
+% [Binary Search Trees / AVL (self) / B-Tree / Red-Black]
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Binary Balanced Search Trees}
+
+  \begin{columns}[t]
+  \begin{column}{0.48\textwidth}
+    \begin{block}{Height-balanced}
+      - more used
+      \\- left-height = right-height ± 1 (AVL)
+      \\- height = $\log n$
+    \end{block}      
+  \end{column}    
+  \begin{column}{0.48\textwidth}
+    \begin{block}{Weight-balanced}
+      - less used
+      \\- $\text{leafs-left/right} \geq \alpha \times \text{leafs}$, $0<\alpha<1$
+    \end{block}      
+  \end{column}    
+  \end{columns}    
+
 
 \end{frame}
 

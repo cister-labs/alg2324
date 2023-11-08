@@ -103,6 +103,8 @@ int fd (int a[], int N){
 \\\texttt{int gcd (int x, int y)} -- greatest common divisor of 2 positive integers
 \\\texttt{int sum (int v[], int N)} -- sum of elements in an array
 \\\texttt{int maxPOrd (int v[], int N)} -- length of the longest sorted prefix of an array
+% its a prefix and there is no next-larger
+% forall_{0<i<r} v[i-1]<=v[i])  &&  (r==N || v[r-1]>v[r])
 \\\texttt{int isSorted (int v[], int N)} --  tests if an array is sorted (growing)
   }
 \end{frame}
