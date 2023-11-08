@@ -127,7 +127,7 @@ typedef struct queue {
 Consider 2 operations
 \begin{itemize}
     \item \texttt{enqueue} \emph{pushes} a value in stack \texttt{A};
-    \item \texttt{dequeue} \emph{pops} a value from stack \texttt{B} if non-empty otherwise \emph{pops} all elements from stack \texttt{A} and \emph{pushes} them to stack \texttt{B}, except the last one that is returned;
+    \item \texttt{dequeue} \emph{pops} a value from stack \texttt{B} if non-empty otherwise \emph{pops} all elements from stack \texttt{A} and \emph{pushes} them to stack \texttt{B}, and \emph{pops} an element from \texttt{B} that returns;
     \item assume each \emph{push} and \emph{pop} has a cost of 1;
   \end{itemize}
 \end{column}
@@ -182,7 +182,8 @@ for the best and worst cases?}
 \doSimpleExercise{What is the amortised cost for \texttt{insert\_rem}, using the \alert{aggregate method}?}
 ~\\[-10mm]
 \doSimpleExercise{Present a \alert{potential function} for \texttt{insert\_rem} and use it to compute the \alert{constant amortised cost}.}
-
 \end{frame}
+% phi(N) = N
+
 
 \end{document}

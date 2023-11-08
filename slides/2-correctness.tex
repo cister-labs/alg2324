@@ -140,18 +140,24 @@ int fd (int a[], int N){
     P \Rightarrow Q[x\backslash E]
     \\\hline
     \{P\}~x\texttt{:=}E~\{Q\}
-    \end{array}$$
-
-  $$\begin{array}{c}
+    \end{array}
+    \qquad\qquad
+  \begin{array}{c}
     P\Rightarrow \alert{I} \qquad \{\alert{I}\land c\} ~S~ \{\alert{I}\} \qquad (\alert{I} \land \lnot c)\Rightarrow Q
     \\\hline
     \{P\} \texttt{ while }c~S~\{Q\}
     \end{array}$$
 
     \begin{enumerate}
-      \item $P \Rightarrow \alert{I}$: Before the cycle the invariant holds.
-      \item $\{\alert{I} \land c\}~S~\{ \alert{I} \}$: Assuming the invariant holds before an iteration, it must be valid after the iteration.
-      \item $(\alert{I} \land \lnot c) \Rightarrow Q$: After the cycle the post-condition holds.
+      \item \textbf{Initialisation:} $P \Rightarrow \alert{I}$
+        \hfill\textcolor{black!40}{\emph{($P$ is the precondition right before the cycle)}}
+        \\Before the cycle the invariant holds.
+      \item \textbf{Maintenance:} $\{\alert{I} \land c\}~S~\{ \alert{I} \}$
+        \hfill\textcolor{black!40}{\emph{(or $I\land c \Rightarrow I'$, where $I'$ is the invariant after $S$)}}
+        \\Assuming the invariant holds before an iteration; it must be valid after it.
+      \item \textbf{Termination/Usefulness:} $(\alert{I} \land \lnot c) \Rightarrow Q$
+        \hfill\textcolor{black!40}{\emph{(simplify $I\land c$ until obtain $Q$)}}
+        \\After the cycle the post-condition holds.
     \end{enumerate}
 \end{frame}
 
@@ -446,7 +452,7 @@ int ssearch (int x, int a[], int N){
   \begin{block}{A loop variant $\structure{V}$ is an \textbf{integer expression} s.t.}
     \begin{itemize}
       \item is positive in the beginning of each round ($c \land I ~\Rightarrow~ \structure{V}>0$)
-      \item decreases in every round ($I ~\Rightarrow~ \structure{V} > \structure{V'}$)
+      \item decreases in every round ($c \land I ~\Rightarrow~ \structure{V} > \structure{V'}$)
     \end{itemize}
   \end{block}
 
