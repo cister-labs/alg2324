@@ -355,7 +355,7 @@ typedef struct stack {
 \end{columns}
   
 
-\only<2->{\doSimpleExercise{(Informally) what is the complexity of: \texttt{push}, \texttt{pop}, \texttt{head}?}}
+\only<2->{\doSimpleExercise{(Informally) what is the expected complexity of: \texttt{push}, \texttt{pop}, \texttt{head}?}}
   % with static arrays
 
   % with linked lists
@@ -799,22 +799,56 @@ typedef Bucket
 
   \begin{columns}[t]
   \begin{column}{0.48\textwidth}
-    \begin{block}{Height-balanced}
+    \begin{alertblock}{Height-balanced}
       - more used
-      \\- left-height = right-height ± 1 (AVL)
+      \\- AVL: left-height = right-height ± 1
+      \\- Red-black: similar wrt \emph{black}
       \\- height = $\log n$
-    \end{block}      
+    \end{alertblock}      
   \end{column}    
   \begin{column}{0.48\textwidth}
     \begin{block}{Weight-balanced}
       - less used
       \\- $\text{leafs-left/right} \geq \alpha \times \text{leafs}$, $0<\alpha<1$
+      \\- better for lookup intensive systems
     \end{block}      
   \end{column}    
-  \end{columns}    
-
-
+  \end{columns} 
 \end{frame}
+
+
+\newcommand{\notyet}[1]{\textcolor{black!40}{\textit{#1}}}
+
+\begin{frame}\frametitle{AVL trees}
+\centering
+
+\begin{itemize}
+  \item By Adelson-Velsky and Landis
+  \item Oldest self-balancing binary search tree data structure to be invented ('62)
+  \item Binary (left-right) search (sorted) tree
+  \item Labels in the nodes
+  \item At every node, the \alert{height of left and right trees differ at most by 1}
+  \item Insertions and removals preserve this
+\end{itemize}
+
+
+
+\begin{tabular}{lcc@{~~~}cc}
+\toprule
+Function &  Amortized & Worst Case
+ & \notyet{Amortized (RB)} & \notyet{Worst case (RB)}
+\\\midrule
+Search     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
+           & \notyet{${\mathcal{O}(\log n)}$} & \notyet{${\mathcal{O}(\log n)}$}\\
+Insert     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
+           & \notyet{${\mathcal{O}(1)}$} & \notyet{${\mathcal{O}(\log n)}$}\\
+Delete     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
+           & \notyet{${\mathcal{O}(1)}$} & \notyet{${\mathcal{O}(\log n)}$}\\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+
 
 \section{Graphs}
 

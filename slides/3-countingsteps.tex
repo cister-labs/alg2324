@@ -249,6 +249,10 @@ int sum(int v[], int a, int b) {
 \end{lstlisting}
 \end{column}
 \end{columns}
+% T_sum(a,b) = b-a+1
+% T(N) = sum[i=0..N-1] sum[j=i..N-1] j-i+1
+% = sum[i=0..N-1] ((N-1-i+1)-(i-i+1))/2 * (N-i)
+% = sum[i=0..N-1] (N-i)*(N-1-i)/2
 %
 % T(N) = ...
 % =   sum_i=0^(N-1) (N-i)*((N-1-i)/2)
