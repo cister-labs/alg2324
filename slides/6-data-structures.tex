@@ -849,6 +849,169 @@ Delete     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
 \end{frame}
 
 
+\newcommand{\mytree}[1]{\begin{tikzpicture}%
+ [level distance=8mm,
+   level 1/.style={sibling distance=22mm},
+   level 2/.style={sibling distance=14mm},
+   level 3/.style={sibling distance=7mm},
+  every node/.style={circle,inner sep=-3pt,minimum width=6mm,draw=black,fill=white}]
+% level 1/.style={sibling distance=20mm,nodes={fill=red!45}},
+  #1
+  \end{tikzpicture}}
+
+\begin{frame}\frametitle{AVL trees}
+    \centering
+
+\doExercise{Are these balanced?}{\centering
+  \wrap{\mytree{\node {4}
+      child {node {2}
+        child {node {1}}
+        child {node {3}}
+      }
+      child {node {5}
+        child {}
+        child {node {6}
+          child {} child {node{7}}
+        }
+      }
+    ;}\\[2mm]~}
+  ~~~~~~~~
+    \wrap{\mytree{\node {8}
+      child {node {5}
+        child {node {3} child{node{1}child{} child{node{2}}} child{node {4}}}
+        child {node {7} child{node{6}} child{}}
+      }
+      child {node {10}
+        child {node{9}}
+        child {node {11}}
+      }
+    ;}}
+}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Update in an AVL tree}
+    
+\begin{block}{See animation}
+  \url{https://en.wikipedia.org/wiki/AVL_tree\#/media/File:AVL_Tree_Example.gif}
+  \\[3mm]
+  4 rotations: \alert{left}, \structure{right},
+    \structure{right}-\alert{left}, \structure{right}-\structure{right}
+\end{block}
+
+\begin{columns}
+\begin{column}{.50\textwidth}
+%
+\begin{lstlisting}[language=C++,emph={avl,AVL,bal,updateAVL}]
+typedef struct avl {
+  int bal;
+  int key, info;
+  struct avl *left , *right ;
+} *AVL;
+#define LEFT  -1
+#define RIGHT 1
+#define BAL   0
+
+// returns 0 if key already existed
+int updateAVL (AVL *a, int k, int i);
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.48\textwidth}
+%
+\doSimpleExercise{How would you implement an \textbf{update without balancing}?}
+\doSimpleExercise{How would you implement \textbf{\texttt{AVL rotateRight(AVL a)}}?}
+%
+% AVL rotateRight (AVL a){
+%   AVLb= a->left;
+%   a->left = b->right;
+%   b->right = a;
+%   return b ;
+% }
+%
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Full code: updateAVL}
+    
+\begin{columns}
+\begin{column}{.42\textwidth}
+%
+\begin{lstlisting}[language=C++,emph={AVL,fixLeft,updateAVLRec,updateAVL}
+  ,emph={[2]LEFT,RIGHT,BAL},morekeywords={NULL,malloc}]
+int updateAVL(AVL *a,
+              int k, int i){
+  int g, u;
+  *a =
+    updateAVLRec(*a,k,i,&g,&u);
+  return u;
+}
+
+
+\end{lstlisting}
+%
+\end{column}
+\begin{column}{.58\textwidth}
+\begin{lstlisting}[language=C++,emph={AVL,fixLeft,updateAVLRec,updateAVL}
+  ,emph={[2]LEFT,RIGHT,BAL},morekeywords={NULL,malloc}]
+AVL updateAVLRec(AVL a , int k ,
+                 int i, int *g , int *u){
+ if (a == NULL) {       // insert k->i here
+   a = malloc (sizeof (struct avl ));
+   a->key=k; a->info=i ; a->bal=BAL;
+   a->left=a->right=NULL; *g=1; *u=0;
+ } else if (a->key==k) {     // update k->i
+   a->info=i; *g=0; *u=1;
+ } else if (a->key > k) {    // update left
+   a->left = updateAVLRec(a->left,k,i,g,u);
+   if (*g == 1) switch (a->bal){ // balance
+     case LEFT: a= fixLeft(a); *g=0; break;
+     case RIGHT:a->bal=BAL;    *g=0; break;
+     case BAL:  a->bal=LEFT;         break;
+   }
+ } else{ // a->key < k         update right
+   // left <--> right
+ }
+ return  a ;
+}
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Full code: updateAVL -- fix}
+    
+\begin{lstlisting}[language=C++,emph={AVL,rotateLeft,rotateRight,fixLeft},emph={[2]LEFT,RIGHT,BAL}]
+AVL fixLeft(AVL a) {
+  AVL b, c;
+  b=a->left ;
+  if (b->bal==LEFT){
+    a->bal = b->bal = BAL;
+    a=rotateRight(a);
+  } else {
+    c = b->right ;
+    switch (c->bal) {
+      case LEFT:  a->bal=RIGHT; b->bal=BAL;  break;
+      case RIGHT: a->bal=BAL;   b->bal=LEFT; break;
+      case BAL:   a->bal=BAL;   b->bal=BAL;
+    }
+    c->bal = BAL;
+    a->left = rotateLeft(b);
+    a = rotateRight(a);
+  }
+  return a;
+}
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Black-Red Trees}
+    
+  ...
+
+\end{frame}
 
 \section{Graphs}
 
