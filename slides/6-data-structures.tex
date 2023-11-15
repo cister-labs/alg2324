@@ -980,7 +980,7 @@ AVL updateAVLRec(AVL a , int k ,
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Full code: updateAVL -- fix}
+\begin{frame}[fragile]\frametitle{Full code: updateAVL -- fix-left}
     
 \begin{lstlisting}[language=C++,emph={AVL,rotateLeft,rotateRight,fixLeft},emph={[2]LEFT,RIGHT,BAL}]
 AVL fixLeft(AVL a) {
@@ -1006,11 +1006,64 @@ AVL fixLeft(AVL a) {
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%
 
-\begin{frame}\frametitle{Black-Red Trees}
+\tikzstyle{blacknode}=[white,fill=black,font=\bf,thick,draw=black,font=\bf]
+\tikzstyle{rednode}=[red!75!black,fill=red!15,thick,
+    draw=red!75!black]
+\newcommand{\rbtree}[1]{\begin{tikzpicture}%
+ [level distance=8mm,
+  every node/.style={circle,inner sep=-3pt,
+      minimum width=6mm},
+  level 1/.style={sibling distance=26mm,nodes={rednode}},
+  level 2/.style={sibling distance=16mm,nodes={blacknode}},
+  level 3/.style={sibling distance=8mm,nodes={rednode}},
+  level 4/.style={sibling distance=4mm,nodes={blacknode}}]
+  #1
+  \end{tikzpicture}}
+
+\begin{frame}\frametitle{Red-Black Trees}
     
-  ...
-
+\begin{columns}
+\begin{column}{.42\textwidth}
+%
+    \wrap{\rbtree{\node[blacknode] {8}
+      child {node {5}
+        child {node {3}
+          child{node{1}
+            child{} %{edge from parent [draw=none]}
+            child{node{2} child{} child{} }}
+          child{node {4} child{} child{} }}
+        child {node {7}
+          child{node{6} child{} child{}}
+          child{}}} %{edge from parent [draw=none]}}}
+      child {node {10}
+        child {node{9} child{} child{}}
+        child {node {11} child{} child{}}}
+    ;}}
+    \\[-7mm]
+    \wrap{\rbtree{\node[blacknode] {8}
+      child {node[blacknode] {5}
+        child {node[blacknode] {3} child{} child{}}
+        child {node[blacknode] {7} child{} child{}}}
+      child {node[blacknode] {10}
+        child {node[blacknode]{9} child{} child{}}
+        child {node[blacknode] {11} child{} child{}}}
+    ;}}
+%
+\end{column}
+\begin{column}{.48\textwidth}
+%
+\begin{itemize}
+  \item Nodes are black or red
+  \item The root is black.
+  \item Empty nodes count as black
+  \item Red nodes have only black children
+  \item All down paths from a root have equal black-height
+  \item \structure{Only 1 on the left is a RB tree}
+\end{itemize}%
+\end{column}
+\end{columns}
 \end{frame}
 
 \section{Graphs}
