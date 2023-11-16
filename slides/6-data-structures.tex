@@ -173,7 +173,7 @@ struct list *next;
   % add, remove, append, concat
 \begin{columns}
 \begin{column}{.48\textwidth}
-\begin{lstlisting}[language=C++, emph={prev,LInt}]
+\begin{lstlisting}[language=C++, emph={prev,LInt},morekeywords={malloc}]
 LInt add (int x, LInt l) {
   LInt new =
     malloc(sizeof(struct list));
@@ -181,14 +181,14 @@ LInt add (int x, LInt l) {
     new->value=x;
     new->next=l ;
   }
-return new;
+  return new;
 }
 \end{lstlisting}
 %
 \end{column}
 \begin{column}{.50\textwidth}
 %
-\begin{lstlisting}[language=C++, emph={prev,LInt}]
+\begin{lstlisting}[language=C++, emph={prev,LInt},morekeywords={malloc}]
 LInt dda (int x, LInt l) {
   LInt pt = l;
   while (pt != NULL) pt = pt->next;
@@ -208,15 +208,16 @@ LInt dda (int x, LInt l) {
 \begin{frame}[fragile]\frametitle{Sequences -- Recall linked lists (fixed)}
   
 \begin{lstlisting}[language=C++,emph={list,LInt}]
-typedef struct list { int value ;
-struct list *next;
+typedef struct list {
+  int value ;
+  struct list *next;
 } *LInt;
 \end{lstlisting}
-
+~\\[-7mm]
   % add, remove, append, concat
 \begin{columns}
 \begin{column}{.48\textwidth}
-\begin{lstlisting}[language=C++, emph={prev,LInt}]
+\begin{lstlisting}[language=C++, emph={prev,LInt},morekeywords={malloc}]
 LInt add (int x, LInt l) {
   LInt new = malloc(sizeof(struct list ));
   if (new != NULL) {
@@ -230,7 +231,7 @@ return new;
 \end{column}
 \begin{column}{.50\textwidth}
 %
-\begin{lstlisting}[language=C++, emph={prev,LInt}]
+\begin{lstlisting}[language=C++, emph={prev,LInt},morekeywords={malloc}]
 LInt dda (int x, LInt l) {
   LInt pt = l, prev;
   while (pt != NULL) {
@@ -486,7 +487,7 @@ $~$
 \end{column}
 \begin{column}{.50\textwidth}
 %
-\begin{lstlisting}[language=C++,emph={prQueue}]
+\begin{lstlisting}[language=C++,emph={prQueue,PriorityQ}]
 #define MAX 1000
 typedef struct prQueue {
   int values [MAX];
