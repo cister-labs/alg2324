@@ -76,7 +76,7 @@
 \begin{column}{.48\textwidth}
 \begin{lstlisting}[language=C++,emph={SetInt,MSetInt}]
 #define MAXS 100
-typedef char SetInt [MAXS] ;
+typedef int SetInt [MAXS] ;
 \end{lstlisting}
 
 % \only<1>{
@@ -819,6 +819,7 @@ typedef Bucket
 
 
 \newcommand{\notyet}[1]{\textcolor{black!40}{\textit{#1}}}
+\newcommand{\oknow}[1]{\alert{\textbf{\textit{#1}}}}
 
 \begin{frame}\frametitle{AVL trees}
 \centering
@@ -1053,32 +1054,82 @@ AVL fixLeft(AVL a) {
     ;}}
 %
 \end{column}
-\begin{column}{.48\textwidth}
+\begin{column}{.50\textwidth}
 %
 \begin{itemize}
-  \item Nodes are black or red
+  \item \alert{\textbf{1.}} Nodes are black or red
+  \item \alert{\textbf{2.}} Empty nodes count as black
+  \item \alert{\textbf{3.}} Red nodes have only black children
+  \item \alert{\textbf{4.}} All down paths from a root have equal black-height
+  \\[5mm]
   \item The root is black.
-  \item Empty nodes count as black
-  \item Red nodes have only black children
-  \item All down paths from a root have equal black-height
   \item \structure{Only 1 on the left is a RB tree}
 \end{itemize}%
 \end{column}
 \end{columns}
 \end{frame}
 
-\section{Graphs}
-
-\begin{frame}\frametitle{Overview}
+\begin{frame}\frametitle{Red-Black Trees -- inserting and deleting}
     
-  \begin{itemize}
-    \item Depth/Breathfirst traversals
-    \item Acyclic -- topological order
-    \item Transitive closure
-    \item Minimum spanning tree
-    \item Shortest/longest path
-  \end{itemize}
+\begin{columns}
+\begin{column}{.42\textwidth}
+%
+    \wrap{\rbtree{\node[rednode] {7}
+        child {node[blacknode] {5}
+          child {node[rednode]{3}
+            child {node[blacknode]{2}
+              child {node[rednode]{1} child{} child{}}
+              child {}}
+            child {node[blacknode]{4} child{} child{}}}
+          child {node{6} child{} child{}}}
+        child {node[blacknode]{9}
+          child {node{8} child{} child{}}
+          child {node{10} child{} child{}}}
+    ;}}
+%
+\end{column}
+\begin{column}{.50\textwidth}
+%
+\begin{itemize}
+  \item 6 cases for insertion (with nesting)
+  \item 6 cases for deletion (with nesting)
+  % \item Non-trivial
+\end{itemize}%
+\begin{block}{Properties}
+  - height is $\mathcal{O}(\log n)$.
+  \\
+  - no path from the root to a leaf is more than twice as long as a path to another leaf
+\end{block}
+\end{column}
+\end{columns}
 
+\begin{tabular}{lcc@{~~~}cc}
+\toprule
+Function &  Amortized (AVL) & Worst Case (AVL)
+ & \oknow{Amortized} & \oknow{Worst case}
+\\\midrule
+Search     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
+           & \oknow{${\mathcal{O}(\log n)}$} & \oknow{${\mathcal{O}(\log n)}$}\\
+Insert     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
+           & \oknow{${\mathcal{O}(1)}$} & \oknow{${\mathcal{O}(\log n)}$}\\
+Delete     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
+           & \oknow{${\mathcal{O}(1)}$} & \oknow{${\mathcal{O}(\log n)}$}\\
+\bottomrule
+\end{tabular}
 \end{frame}
+
+% \section{Graphs}
+
+% \begin{frame}\frametitle{Overview}
+    
+%   \begin{itemize}
+%     \item Depth/Breathfirst traversals
+%     \item Acyclic -- topological order
+%     \item Transitive closure
+%     \item Minimum spanning tree
+%     \item Shortest/longest path
+%   \end{itemize}
+
+% \end{frame}
 
 \end{document}
