@@ -386,8 +386,7 @@ typedef struct stack {
 void push (Stack *s , int x){
   if (s->sp == s->size)
     doubleArray (s);
-  if (r == 0)
-    s->values[s->sp++] = x;
+  s->values[s->sp++] = x;
 }
 
 void doubleArray (Stack *s){
@@ -396,6 +395,7 @@ void doubleArray (Stack *s){
     realloc(s->values, s->size);
 }
 \end{lstlisting}
+  % if (r == 0)
 %
 \end{column}
 \begin{column}{.50\textwidth}
