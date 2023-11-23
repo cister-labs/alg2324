@@ -1118,6 +1118,52 @@ Delete     & ${\Theta(\log n)}$ & ${\mathcal{O}(\log n)}$
 \end{tabular}
 \end{frame}
 
+\begin{frame}\frametitle{Red-Black trees height is in $\mathcal{O}(\log n)$}
+  
+  \begin{columns}
+  \begin{column}{.24\textwidth}
+  %
+  \begin{itemize}
+  \item \alert{\textbf{1.}} Nodes are black or red
+  \item \alert{\textbf{2.}} Empty nodes count as black
+  \item \alert{\textbf{3.}} Red nodes have only black children
+  \item \alert{\textbf{4.}} All down paths from a root have equal black-height
+\end{itemize}%
+\end{column}
+\begin{column}{.65\textwidth}
+  ~\\[-3mm]
+  \begin{exampleblock}{Lemma: size of a subtree -- $size(x) \geq 2^{bh(x)-1}$}
+  \begin{itemize}
+    \item $bh(x)$ is the black-height of a node $x$
+    \item \alert{base case:} $2^{bh(\alert{\textsc{null}})-1} = 2^0-1 = size(\alert{\textsc{null}}) $
+    \item \structure{inductive case:} For each child $c$ of $x$:
+    \\~~~~~$bh(c)=bh(x)$ or $bh(c)=bh(x)-1$.
+    \\
+    Then  $\begin{array}[t]{@{}l@{~}l@{}}
+    size(x) &\geq~ 2\times(\structure{2^{bh(x)-1}-1}) + 1
+          \\&=~ 2^{bh(x)-1+1}-2+1 ~=~ 2^{bh(x)-1}
+      \end{array}$
+  \end{itemize}
+  \end{exampleblock}
+  ~\\[-9mm]
+  \begin{exampleblock}{Theorem: Height of a RB tree is $\mathcal{O}(\log n)$}
+    \begin{itemize}
+      \item Let $h$ be the height of a RB tree $x$
+      \item For any trace $x,\ldots,leaf$, more than half are black% (Req.\,3)
+      \item $\Rightarrow ~ bh(h)\geq h/2$
+      \item $\Rightarrow ~ size(x) \geq 2^{h/2} -1
+          % \\$
+            ~\Leftrightarrow ~ h \leq 2\log n + 1 \in \mathcal{O}(\log n)$
+    \end{itemize}
+  \end{exampleblock}
+\end{column}
+
+\end{columns}
+
+
+\end{frame}
+
+
 % \section{Graphs}
 
 % \begin{frame}\frametitle{Overview}
