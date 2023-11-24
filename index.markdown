@@ -52,10 +52,10 @@ Students should be able to understand the relationship between algorithm design,
 - __27 Oct 23__: Average time complexity and analysis of the quicksort algorithm ([4-average-time.pdf - pages 20-32](slides/4-average-time.pdf)); Randomised algorithms ([4-average-time.pdf - pages 33-40](slides/4-average-time.pdf)); Amortised analysis and the aggregate method ([5-amortised.pdf - pages 1-11](slides/5-amortised.pdf))
 - __10 Nov 23__: Test (30%): 9h30-10h30 (Specification, Correction, Worst/Best time analysis, Asymptotic analysis); Rest of the lesson starts at 11h15 - Amortised analysis ([5-amortised.pdf - pages 11-26](slides/5-amortised.pdf))
 - __17 Nov 23__: Amortised analysis ([5-amortised.pdf - pages 27-44](slides/5-amortised.pdf)); Data structures: sequences ([6-data-structures.pdf - pages 1-8](slides/6-data-structures.pdf))
-- __24 Nov 23__: Data structures: buffers and dictionaries
+- __24 Nov 23__: Data structures: buffers and dictionaries ([6-data-structures.pdf - pages 9-28](slides/6-data-structures.pdf))
 - __1 Dec 23__: _Holiday_
 - __8 Dec 23__: _Holiday_
-- __15 Dec 23__: Test (70%): 9h30-11h30 (all topics); no lesson after the test
+- __15 Dec 23__: Improvement test (70%): 9h30-11h30 (focused on average-time, amortised time, and data structures, but all topics can be asked); no lesson after the test
 
 
 

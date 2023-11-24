@@ -205,7 +205,7 @@ LInt dda (int x, LInt l) {
   LInt pt = l;
   while (pt != NULL) pt = pt->next;
   pt = malloc(sizeof(struct list));
-  pt -> next = x;
+  pt -> value = x;
   pt -> next = NULL ;
   return l ;
 }
@@ -249,10 +249,10 @@ LInt dda (int x, LInt l) {
   while (pt != NULL) {
     prev = pt; pt = pt->next; }
   pt = malloc(sizeof(struct list));
-  pt->next = x;
+  pt->value = x;
   pt->next = NULL ;
   if (l==NULL)  l = pt;
-  else prev->prox = pt;
+  else prev->next = pt;
   return l;
 }
 \end{lstlisting}
@@ -492,7 +492,7 @@ $~$
 %
 \begin{itemize}
   \item Binary tree
-  \item Each node is larger than any of its children
+  \item Each node is smaller than any of its children
   \item Implemented as an array
 \end{itemize}
 %
@@ -771,6 +771,8 @@ typedef Bucket
 \\What is their complexity?}
 \end{frame}
 
+\section{Dictionaries with trees -- not for evaluation}
+
 % \section{Balanced trees}
 
 \begin{frame}\frametitle{More dictionaries: balanced trees}
@@ -806,7 +808,6 @@ typedef Bucket
 % [Binary Search Trees / AVL (self) / B-Tree / Red-Black]
 
 \end{frame}
-
 
 \begin{frame}\frametitle{Binary Balanced Search Trees}
 
