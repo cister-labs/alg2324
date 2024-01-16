@@ -26,7 +26,7 @@ Students should be able to understand the relationship between algorithm design,
 - Amortized analysis
 - Data structures - Collections and Dictionaries
 <!-- - Graph traversals and Dynamic programming -->
-- Fundamentals of NP-completeness
+<!-- - Fundamentals of NP-completeness -->
 
 <!-- - Sorting algorithms (after rec. alg. -->
 
@@ -55,7 +55,7 @@ Students should be able to understand the relationship between algorithm design,
 - __24 Nov 23__: Data structures: buffers and dictionaries ([6-data-structures.pdf - pages 9-28](slides/6-data-structures.pdf))
 - __1 Dec 23__: _Holiday_
 - __8 Dec 23__: _Holiday_
-- __15 Dec 23__: Improvement test (70%): 9h30-11h30 (focused on average-time, amortised time, and data structures, but all topics can be asked); no lesson after the test
+- __15 Dec 23__: Improvement test (70%): 9h30-11h30 (focused on recursive functions, average-time, amortised time, and data structures, but all topics can be asked); no lesson after the test
 
 
 
@@ -72,6 +72,11 @@ Students should be able to understand the relationship between algorithm design,
 ### Main book
 
 - [Introduction to algorithms](http://catalogo.up.pt/F/-?func=find-b&local_base=FCUP&find_code=SYS&request=000287411), _Cormen Thomas H. et al._; ISBN: 9780262033848
+
+### Example Tests
+
+- [Intermediate test](tests/it2324.pdf), used on the 10th Nov 2023, covering around 30% of the topics
+- [Final test](tests/ft2324.pdf) (or improvement test), used on the 15th Dec 2023, covering the remaining 70% of the topics
 
 ### Previous years
 
